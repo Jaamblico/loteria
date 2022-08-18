@@ -4,7 +4,7 @@ import * as Styled from "./Button.styled";
 
 const { Anime, stagger } = ReactAnime;
 
-export function Button({ id, name }) {
+export function Button({ id, name, handleClick }) {
   function comprarTicket() {
     console.log("click");
   }
@@ -26,7 +26,7 @@ export function Button({ id, name }) {
       ]}
     >
       <Styled.ButtonContainer id={id}>
-        <Styled.Button onClick={() => comprarTicket()}>{name}</Styled.Button>
+        <Styled.Button onClick={() => handleClick()}>{name}</Styled.Button>
       </Styled.ButtonContainer>
     </Anime>
   );
