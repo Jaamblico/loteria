@@ -1,22 +1,32 @@
 import React from "react";
 import { getBalance, getLotteryData } from "../service";
 
+const INITIAL_STATE = {
+  balance: 0,
+  ticketPrice: 0,
+  isLoading: true,
+  prize: 0,
+};
+
 export const useContract = () => {
-  const [isLoading, setIsLoading] = React.useState(true);
-  const [balance, setBalance] = React.useState(0);
-  const [prize, setPrize] = React.useState(0);
+  const [data, setData] = React.useState(INITIAL_STATE);
 
   React.useEffect(() => {
     async function getStaticInfo() {
       const addressBalance = await getBalance();
-      const lotteryPrize = await getLotteryData("prize");
+      const lotteryData = await getLotteryData();
 
-      setBalance(addressBalance);
-      setPrize(lotteryPrize);
-      setIsLoading(false);
+      console.log("lotteryData", lotteryData);
+
+      setData((data) => ({
+        ...data,
+        ...lotteryData,
+        balance: addressBalance,
+        isLoading: false,
+      }));
     }
     getStaticInfo();
   }, []);
 
-  return { balance, prize, isLoading };
+  return data;
 };

@@ -9,15 +9,18 @@ const MainWindow = styled.section``;
 const Footer = styled.section``;
 
 function App() {
-  const { balance, prize, isLoading } = useContract();
+  const { balance, isLoading, ticketPrice, prize } = useContract();
 
-  if (isLoading) return "Cargando...";
-
-  return (
+  return isLoading ? (
+    "Cargando..."
+  ) : (
     <MainWindow id="main">
       <Title title="Lotería de Babilonia" />
-      Balance: {balance} ethers Prize:{" "}
-      {prize ? `${prize}ethers` : "No hay jugadores"}
+      Balance: {balance} ethers
+      <br />
+      Ticket Price: {ticketPrice} ethers
+      <br />
+      Prize: {prize} ethers
       <Button
         id="button-container"
         name="Comprar Ticket"

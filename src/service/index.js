@@ -21,7 +21,7 @@ export const getBalance = async () => {
   }
 };
 
-export const getLotteryData = ({ name }) => {
+export const getLotteryData = async () => {
   try {
     if (!window?.ethereum) throw new Error("missing ethereum");
 
@@ -34,14 +34,16 @@ export const getLotteryData = ({ name }) => {
       signer
     );
 
-    switch (name) {
-      case "prize":
-        return ethers.utils.formatEther(lotteryContract.getPrize());
-      case "ticketPrice":
-        return ethers.utils.formatEther(lotteryContract.getTicketPrice());
-      default:
-        break;
-    }
+    const prize = ethers.utils.formatEther(await lotteryContract.getPrize());
+
+    const ticketPrice = ethers.utils.formatEther(
+      await lotteryContract.getTicketPrice()
+    );
+
+    return {
+      prize,
+      ticketPrice,
+    };
   } catch (e) {
     console.log(e);
   }
