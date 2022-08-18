@@ -6,21 +6,42 @@ const CONTRACT_ADDRESS = "0x03E920cBEd6b209EaC9ABE24F9C9778Cf682EC1e";
 
 const REQUEST_ACCOUNTS = "eth_requestAccounts";
 
-export const getContractInfo = () => {
+export const getBalance = async () => {
+  try {
+    const network = "rinkeby";
+    const provider = ethers.getDefaultProvider(network);
+
+    const balance = await provider.getBalance(CONTRACT_ADDRESS);
+
+    const formattedBalance = ethers.utils.formatEther(balance);
+
+    return Number(formattedBalance);
+  } catch (e) {
+    console.log(e);
+  }
+};
+
+export const getLotteryData = ({ name }) => {
   try {
     if (!window?.ethereum) throw new Error("missing ethereum");
+
     const provider = new ethers.providers.Web3Provider(window.ethereum);
     const signer = provider.getSigner();
 
     const lotteryContract = new ethers.Contract(
       CONTRACT_ADDRESS,
       abi.abi,
-      provider
+      signer
     );
 
-    const balance = provider.getBalance(CONTRACT_ADDRESS);
-
-    console.log(ethers.utils.formatEther(balance));
+    switch (name) {
+      case "prize":
+        return ethers.utils.formatEther(lotteryContract.getPrize());
+      case "ticketPrice":
+        return ethers.utils.formatEther(lotteryContract.getTicketPrice());
+      default:
+        break;
+    }
   } catch (e) {
     console.log(e);
   }
