@@ -25,24 +25,38 @@ export const getLotteryData = async () => {
   try {
     if (!window?.ethereum) throw new Error("missing ethereum");
 
-    const provider = new ethers.providers.Web3Provider(window.ethereum);
-    const signer = provider.getSigner();
+    //const provider = new ethers.providers.Web3Provider(window.ethereum);
+    //const signer = provider.getSigner();
 
-    const lotteryContract = new ethers.Contract(
-      CONTRACT_ADDRESS,
-      abi.abi,
-      signer
-    );
+    const lotteryContract = new ethers.Contract(CONTRACT_ADDRESS, abi.abi);
 
-    const prize = ethers.utils.formatEther(await lotteryContract.getPrize());
+    //const prize = await lotteryContract.getPrize();
 
-    const ticketPrice = ethers.utils.formatEther(
-      await lotteryContract.getTicketPrice()
-    );
+    //console.log(prize);
+
+    // const ticketPrice = await lotteryContract.getTicketPrice();
+    //
+    // const status = await lotteryContract.getLotteryState();
+    //
+    // const numOfPlayers = await lotteryContract.getNumberOfPlayers();
+    //
+    // const player = await lotteryContract.getPlayer();
+    //
+    // const players = await lotteryContract.getPlayers();
+    //
+    // const playersRequired = await lotteryContract.getPlayersRequired();
+    //
+    // const winner = await lotteryContract.getWinner();
 
     return {
-      prize,
-      ticketPrice,
+      prize: 3,
+      ticketPrice: 1,
+      status: "active",
+      numOfPlayers: 3,
+      player: "?",
+      players: "???",
+      playersRequired: "2",
+      winner: "?",
     };
   } catch (e) {
     console.log(e);
