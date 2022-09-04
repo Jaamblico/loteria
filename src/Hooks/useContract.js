@@ -1,11 +1,16 @@
 import React from "react";
-import { getBalance, getLotteryData } from "../service";
+import { getBalance, getLotteryData } from "../services";
 
 const INITIAL_STATE = {
-  balance: 0,
-  ticketPrice: 0,
   isLoading: true,
   prize: 0,
+  ticketPrice: 0,
+  status: 0,
+  numOfPlayers: 0,
+  players: [],
+  playersRequired: 0,
+  lastWinner: "",
+  address: "",
 };
 
 export const useContract = () => {
@@ -16,7 +21,7 @@ export const useContract = () => {
       const addressBalance = await getBalance();
       const lotteryData = await getLotteryData();
 
-      console.log("lotteryData", lotteryData);
+      //console.log("lotteryData", lotteryData);
 
       setData((data) => ({
         ...data,
