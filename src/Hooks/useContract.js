@@ -1,5 +1,5 @@
-import React from "react";
-import { getBalance, getLotteryData } from "../services";
+import React from 'react'
+import { getBalance, getLotteryData } from '../services'
 
 const INITIAL_STATE = {
   isLoading: true,
@@ -9,29 +9,29 @@ const INITIAL_STATE = {
   numOfPlayers: 0,
   players: [],
   playersRequired: 0,
-  lastWinner: "",
-  address: "",
-};
+  lastWinner: '',
+  address: '',
+}
 
 export const useContract = () => {
-  const [data, setData] = React.useState(INITIAL_STATE);
+  const [data, setData] = React.useState(INITIAL_STATE)
 
   React.useEffect(() => {
     async function getStaticInfo() {
-      const addressBalance = await getBalance();
-      const lotteryData = await getLotteryData();
+      const addressBalance = await getBalance()
+      const lotteryData = await getLotteryData()
 
       //console.log("lotteryData", lotteryData);
 
-      setData((data) => ({
+      setData(data => ({
         ...data,
         ...lotteryData,
         balance: addressBalance,
         isLoading: false,
-      }));
+      }))
     }
-    getStaticInfo();
-  }, []);
+    getStaticInfo()
+  }, [])
 
-  return data;
-};
+  return data
+}

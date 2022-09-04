@@ -1,7 +1,7 @@
-import * as React from "react";
+import * as React from 'react'
 
-export const Ether = (props) => {
-  const { width = "100%", height = "100%" } = props;
+export const Ether = props => {
+  const { width = '100%', height = '100%' } = props
 
   return (
     <svg
@@ -32,7 +32,7 @@ export const Ether = (props) => {
         <path fill="#393939" d="m0 650.54 392.07 231.75V472.33z" />
       </g>
     </svg>
-  );
-};
+  )
+}
 
-export default Ether;
+export default Ether

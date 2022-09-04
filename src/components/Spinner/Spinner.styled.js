@@ -1,4 +1,4 @@
-import styled from "styled-components";
+import styled from 'styled-components'
 
 export const Spinner = styled.svg`
   animation: rotate 1s linear infinite;
@@ -31,11 +31,11 @@ export const Spinner = styled.svg`
       stroke-dashoffset: -124;
     }
   }
-`;
+`
 
 export const SpinnerContainer = styled.div`
   display: flex;
   align-items: center;
   justify-content: center;
   height: 100vh;
-`;
+`

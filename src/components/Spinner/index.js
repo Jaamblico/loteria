@@ -1,5 +1,5 @@
-import * as React from "react";
-import * as Styled from "./Spinner.styled";
+import * as React from 'react'
+import * as Styled from './Spinner.styled'
 
 export const Spinner = () => (
   <Styled.SpinnerContainer>
@@ -14,4 +14,4 @@ export const Spinner = () => (
       />
     </Styled.Spinner>
   </Styled.SpinnerContainer>
-);
+)

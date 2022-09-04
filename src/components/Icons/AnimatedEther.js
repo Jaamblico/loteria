@@ -1,12 +1,11 @@
-import * as React from "react";
-import ReactAnime from "react-animejs";
-
-import Ether from "./Ether";
+import * as React from 'react'
+import ReactAnime from 'react-animejs'
+import Ether from './Ether'
 
 export function AnimatedEther({ width }) {
-  const { Anime } = ReactAnime;
+  const { Anime } = ReactAnime
 
-  const targets = "#animated-ether-svg";
+  const targets = '#animated-ether-svg'
 
   return (
     <Anime
@@ -17,12 +16,12 @@ export function AnimatedEther({ width }) {
           duration: 3200,
           loop: true,
           elasticity: 600,
-          easing: "easeOutElastic",
+          easing: 'easeOutElastic',
           delay: 80,
         },
       ]}
     >
       <Ether width={width} id="animated-ether-svg" />
     </Anime>
-  );
+  )
 }

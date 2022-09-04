@@ -1,5 +1,5 @@
-import * as React from "react";
-import * as Styled from "./Button.styled";
+import * as React from 'react'
+import * as Styled from './Button.styled'
 
 // import ReactAnime from "react-animejs";
 
@@ -26,5 +26,5 @@ export function Button({ id, name, handleClick }) {
       <Styled.Button onClick={handleClick}>{name}</Styled.Button>
     </Styled.ButtonContainer>
     // </Anime>
-  );
+  )
 }

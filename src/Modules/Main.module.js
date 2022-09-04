@@ -1,19 +1,15 @@
-import * as React from "react";
-
+import * as React from 'react'
 // Styles (should not be here)
-import styled from "styled-components";
-import { createGlobalStyle } from "styled-components";
-
-// Components
-import { BuyAction } from "./BuyAction/BuyAction";
-import { Players } from "./Players/Players";
-
-import { Title } from "../Components/Title";
-import { Container } from "../Components/Container";
-import { Ether } from "../Components/Icons/Ether";
-
+import styled from 'styled-components'
+import { createGlobalStyle } from 'styled-components'
+import { Container } from '../Components/Container'
+import { Ether } from '../Components/Icons/Ether'
+import { Title } from '../Components/Title'
 // Context
-import { ContractProvider, useContractData } from "../Context/ContractContext";
+import { ContractProvider, useContractData } from '../Context/ContractContext'
+// Components
+import { BuyAction } from './BuyAction/BuyAction'
+import { Players } from './Players/Players'
 
 const GlobalStyle = createGlobalStyle`
   * {
@@ -21,18 +17,18 @@ const GlobalStyle = createGlobalStyle`
     margin: 0;
     padding: 0;
   }
-`;
+`
 
 const MainWindow = styled.section`
   padding: 0 48px;
   width: 100vw;
   height: 100vh;
   border: 2px dashed orange;
-`;
+`
 const Footer = styled.section`
   display: flex;
   justify-content: center;
-`;
+`
 
 function Main() {
   function Root() {
@@ -43,7 +39,7 @@ function Main() {
       numOfPlayers,
       playersRequired,
       address,
-    } = useContractData();
+    } = useContractData()
 
     return (
       <MainWindow id="main">
@@ -61,7 +57,7 @@ function Main() {
           Prize: {prize} <Ether width="8" />
         </Container>
 
-        <Container>Status: {status ? "Close" : "Open"}</Container>
+        <Container>Status: {status ? 'Close' : 'Open'}</Container>
 
         <Container>Number of players: {numOfPlayers}</Container>
 
@@ -78,7 +74,7 @@ function Main() {
           </a>
         </Footer>
       </MainWindow>
-    );
+    )
   }
 
   return (
@@ -88,7 +84,7 @@ function Main() {
         <Root />
       </ContractProvider>
     </>
-  );
+  )
 }
 
-export default Main;
+export default Main

@@ -1,11 +1,9 @@
-import * as React from "react";
-
-import { Container } from "../../Components/Container";
-
-import { useContractData } from "../../Context/ContractContext";
+import * as React from 'react'
+import { Container } from '../../Components/Container'
+import { useContractData } from '../../Context/ContractContext'
 
 export const Players = () => {
-  const { players } = useContractData();
+  const { players } = useContractData()
 
   return (
     <Container>
@@ -18,5 +16,5 @@ export const Players = () => {
         </ul>
       </div>
     </Container>
-  );
-};
+  )
+}

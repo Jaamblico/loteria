@@ -1,14 +1,12 @@
-import * as React from "react";
-
-import { Button } from "../../Components/Button";
-import { AnimatedEther } from "../../Components/Icons/AnimatedEther";
-import { Price } from "../../Components/Price";
-import { Container } from "../../Components/Container";
-
-import { useContractData } from "../../Context/ContractContext";
+import * as React from 'react'
+import { Button } from '../../Components/Button'
+import { Container } from '../../Components/Container'
+import { AnimatedEther } from '../../Components/Icons/AnimatedEther'
+import { Price } from '../../Components/Price'
+import { useContractData } from '../../Context/ContractContext'
 
 export const BuyAction = () => {
-  const { ticketPrice: price } = useContractData();
+  const { ticketPrice: price } = useContractData()
 
   return (
     <Container>
@@ -16,10 +14,10 @@ export const BuyAction = () => {
         <Button
           id="button-container"
           name="Comprar Ticket"
-          handleClick={() => console.log("BOTON")}
+          handleClick={() => console.log('BOTON')}
         />
         <Price price={price} /> <AnimatedEther width="20" />
       </>
     </Container>
-  );
-};
+  )
+}
