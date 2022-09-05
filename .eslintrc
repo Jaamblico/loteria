@@ -1,37 +1,13 @@
 {
   "extends": ["plugin:prettier/recommended", "plugin:react/recommended"],
-  "plugins": ["simple-import-sort", "unused-imports"],
+  "plugins": ["unused-imports"],
   "parser": "@babel/eslint-parser",
 
   "env": {
-    "node": true,
+    "node": false,
     "browser": true
   },
   "rules": {
-    "simple-import-sort/exports": "error",
-    "simple-import-sort/imports": [
-      "error",
-      {
-        "groups": [
-          [
-            "^\\u0000",
-            "^react",
-            "^@?\\w",
-            "^@/?\\w",
-            "^~/?\\w",
-            "^\\.\\.(?!/?$)",
-            "^\\.\\./?$",
-            "^\\./(?=.*/)(?!/?$)",
-            "^\\.(?!/?$)",
-            "^\\./?$",
-            "^.+\\.css$"
-          ]
-        ]
-      }
-    ],
-    "no-unused-vars": "off",
-    "unused-imports/no-unused-imports": "error",
-    "unused-imports/no-unused-vars": "error",
     "react/prop-types": "off",
     "react/display-name": "off"
   }

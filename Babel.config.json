@@ -13,14 +13,7 @@
             "useBuiltIns": "usage",
             "corejs": 3,
             "targets": {
-              "browsers": [
-                "> 1%",
-                "Android >= 4",
-                "iOS >= 12",
-                "last 4 versions",
-                "not ie <= 11",
-                "not dead"
-              ]
+              "browsers": ["> 1%", "Android >= 4", "iOS >= 12", "last 4 versions", "not ie <= 11", "not dead"]
             }
           }
         ]
