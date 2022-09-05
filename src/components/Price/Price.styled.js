@@ -1,7 +1,7 @@
 import styled from 'styled-components'
 
 export const PriceContainer = styled.div`
-  border: 1px solid red;
+  display: flex;
 `
 
 export const Price = styled.h2`
