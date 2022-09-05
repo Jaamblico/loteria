@@ -1,4 +1,5 @@
 import * as React from 'react'
+
 import { useWallet } from '../Hooks/useWallet'
 
 const WalletContext = React.createContext()
@@ -6,11 +7,7 @@ const WalletContext = React.createContext()
 function WalletProvider({ children }) {
   const { account, connectWallet } = useWallet()
 
-  return (
-    <WalletContext.Provider value={{ account, connectWallet }}>
-      {children}
-    </WalletContext.Provider>
-  )
+  return <WalletContext.Provider value={{ account, connectWallet }}>{children}</WalletContext.Provider>
 }
 
 function useWalletContext() {

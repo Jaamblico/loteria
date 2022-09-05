@@ -2,6 +2,7 @@ import * as React from 'react'
 // Styles (should not be here)
 import styled from 'styled-components'
 import { createGlobalStyle } from 'styled-components'
+
 import { Container } from '../Components/Container'
 import { Ether } from '../Components/Icons/Ether'
 import { Title } from '../Components/Title'
@@ -25,16 +26,11 @@ const MainWindow = styled.section`
   padding: 0 48px;
   width: 100vw;
   height: 100vh;
-  border: 2px dashed orange;
 `
-const Footer = styled.section`
-  display: flex;
-  justify-content: center;
-`
+const Footer = styled.section``
 
 function Root() {
-  const { lastWinner, prize, status, numOfPlayers, playersRequired, address } =
-    useContractData()
+  const { lastWinner, prize, status, numOfPlayers, playersRequired, address } = useContractData()
 
   const { account } = useWalletContext()
 
@@ -46,12 +42,10 @@ function Root() {
 
       {account ? <BuyAction /> : <ConnectWallet />}
 
-      <Container>
-        <h4>Last winner: {lastWinner} 🎉🎉🎉</h4>
-      </Container>
+      <Container>Last winner: {lastWinner} 🎉🎉🎉</Container>
 
       <Container>
-        Prize: {prize} <Ether width="8" />
+        The Fat One: {prize} <Ether width="8" />
       </Container>
 
       <Container>Status: {status ? 'Close' : 'Open'}</Container>
@@ -62,14 +56,13 @@ function Root() {
 
       <Players />
 
-      <Footer id="footer">
-        <a
-          href={`https://rinkeby.etherscan.io/address/${address}`}
-          target="blank"
-        >
-          View contract
-        </a>
-      </Footer>
+      <Container>
+        <Footer id="footer">
+          <a href={`https://rinkeby.etherscan.io/address/${address}`} target="blank">
+            View contract
+          </a>
+        </Footer>
+      </Container>
     </>
   )
 }

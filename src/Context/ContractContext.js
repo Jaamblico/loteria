@@ -1,4 +1,5 @@
 import * as React from 'react'
+
 import { Spinner } from '../Components/Spinner'
 import { useContract } from '../Hooks/useContract'
 
@@ -11,11 +12,7 @@ function ContractProvider({ children }) {
 
   if (isLoading) return <Spinner />
 
-  return (
-    <ContractContext.Provider value={{ ...data, buyTicket }}>
-      {children}
-    </ContractContext.Provider>
-  )
+  return <ContractContext.Provider value={{ ...data, buyTicket }}>{children}</ContractContext.Provider>
 }
 
 function useContractData() {
