@@ -1,19 +1,18 @@
 import { ethers } from 'ethers'
+
 import abi from '../utils/Lottery.json'
 
 const CONTRACT_ADDRESS = '0x03E920cBEd6b209EaC9ABE24F9C9778Cf682EC1e'
 
 const CHAIN_ID = 'rinkeby'
 
-const { formatEther } = ethers.utils
+const { formatEther, parseEther } = ethers.utils
 
 const defaultProvider = ethers.getDefaultProvider(CHAIN_ID)
 
-const lotteryContract = new ethers.Contract(
-  CONTRACT_ADDRESS,
-  abi.abi,
-  defaultProvider,
-)
+export const lotteryContract = new ethers.Contract(CONTRACT_ADDRESS, abi.abi, defaultProvider)
+
+export const getContractAddress = () => lotteryContract.address
 
 export const getBalance = async () => {
   try {
@@ -31,8 +30,7 @@ export const getLotteryData = async () => {
   try {
     const prize = formatEther(await lotteryContract.getPrize()) ?? null
 
-    const ticketPrice =
-      formatEther(await lotteryContract.getTicketPrice()) ?? null
+    const price = formatEther(await lotteryContract.getTicketPrice()) ?? null
 
     const status = await lotteryContract.getLotteryState()
 
@@ -48,7 +46,7 @@ export const getLotteryData = async () => {
 
     return {
       prize,
-      ticketPrice,
+      price,
       status,
       numOfPlayers,
       players,
@@ -67,23 +65,18 @@ export const buyLotteryTicket = async () => {
 
     const signer = provider.getSigner()
 
-    const lotteryContractSigned = new ethers.Contract(
-      CONTRACT_ADDRESS,
-      abi.abi,
-      signer,
-    )
+    const lotteryContractSigned = new ethers.Contract(CONTRACT_ADDRESS, abi.abi, signer)
 
-    const ticketPrice =
-      formatEther(await lotteryContract.getTicketPrice()) ?? null
+    const ticketPrice = formatEther(await lotteryContract.getTicketPrice()) ?? null
 
     const buyTicketTxn = await lotteryContractSigned.buyTicket({
-      value: ethers.utils.parseEther(ticketPrice),
+      value: parseEther(ticketPrice),
       gasLimit: 300000,
     })
-    console.log('Mining...', buyTicketTxn.hash)
+    // console.log('Mining...', buyTicketTxn.hash)
 
     await buyTicketTxn.wait()
-    console.log('Mined -- ', buyTicketTxn.hash)
+    // console.log('Mined -- ', buyTicketTxn.hash)
   } catch (e) {
     console.error(e)
   }

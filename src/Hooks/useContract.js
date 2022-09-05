@@ -1,10 +1,11 @@
 import React from 'react'
+
 import { buyLotteryTicket, getBalance, getLotteryData } from '../services'
 
 const INITIAL_STATE = {
   isLoading: true,
   prize: 0,
-  ticketPrice: 0,
+  price: 0,
   status: 0,
   numOfPlayers: 0,
   players: [],
