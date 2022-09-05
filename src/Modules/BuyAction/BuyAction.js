@@ -6,7 +6,7 @@ import { Price } from '../../Components/Price'
 import { useContractData } from '../../Context/ContractContext'
 
 export const BuyAction = () => {
-  const { ticketPrice: price } = useContractData()
+  const { ticketPrice: price, buyTicket } = useContractData()
 
   return (
     <Container>
@@ -14,7 +14,7 @@ export const BuyAction = () => {
         <Button
           id="button-container"
           name="Comprar Ticket"
-          handleClick={() => console.log('BOTON')}
+          handleClick={buyTicket}
         />
         <Price price={price} /> <AnimatedEther width="20" />
       </>

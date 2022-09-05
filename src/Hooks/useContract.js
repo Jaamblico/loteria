@@ -1,5 +1,5 @@
 import React from 'react'
-import { getBalance, getLotteryData } from '../services'
+import { buyLotteryTicket, getBalance, getLotteryData } from '../services'
 
 const INITIAL_STATE = {
   isLoading: true,
@@ -21,8 +21,6 @@ export const useContract = () => {
       const addressBalance = await getBalance()
       const lotteryData = await getLotteryData()
 
-      //console.log("lotteryData", lotteryData);
-
       setData(data => ({
         ...data,
         ...lotteryData,
@@ -33,5 +31,11 @@ export const useContract = () => {
     getStaticInfo()
   }, [])
 
-  return data
+  const buyTicket = async () => {
+    const confirmation = await buyLotteryTicket()
+
+    return confirmation
+  }
+
+  return { data, buyTicket }
 }

@@ -7,8 +7,10 @@ import { Ether } from '../Components/Icons/Ether'
 import { Title } from '../Components/Title'
 // Context
 import { ContractProvider, useContractData } from '../Context/ContractContext'
+import { useWalletContext, WalletProvider } from '../Context/WalletContext'
 // Components
 import { BuyAction } from './BuyAction/BuyAction'
+import { ConnectWallet } from './ConnectWallet/ConnectWallet'
 import { Players } from './Players/Players'
 
 const GlobalStyle = createGlobalStyle`
@@ -30,60 +32,58 @@ const Footer = styled.section`
   justify-content: center;
 `
 
-function Main() {
-  function Root() {
-    const {
-      lastWinner,
-      prize,
-      status,
-      numOfPlayers,
-      playersRequired,
-      address,
-    } = useContractData()
+function Root() {
+  const { lastWinner, prize, status, numOfPlayers, playersRequired, address } =
+    useContractData()
 
-    return (
-      <MainWindow id="main">
-        <Container>
-          <Title title="Lotería de Babilonia" />
-        </Container>
-
-        <BuyAction />
-
-        <Container>
-          <h4>Last winner: {lastWinner} 🎉🎉🎉</h4>
-        </Container>
-
-        <Container>
-          Prize: {prize} <Ether width="8" />
-        </Container>
-
-        <Container>Status: {status ? 'Close' : 'Open'}</Container>
-
-        <Container>Number of players: {numOfPlayers}</Container>
-
-        <Container>Players required: {playersRequired}</Container>
-
-        <Players />
-
-        <Footer id="footer">
-          <a
-            href={`https://rinkeby.etherscan.io/address/${address}`}
-            target="blank"
-          >
-            View contract
-          </a>
-        </Footer>
-      </MainWindow>
-    )
-  }
+  const { account } = useWalletContext()
 
   return (
     <>
-      <GlobalStyle />
-      <ContractProvider>
-        <Root />
-      </ContractProvider>
+      <Container>
+        <Title title="Lotería de Babilonia" />
+      </Container>
+
+      {account ? <BuyAction /> : <ConnectWallet />}
+
+      <Container>
+        <h4>Last winner: {lastWinner} 🎉🎉🎉</h4>
+      </Container>
+
+      <Container>
+        Prize: {prize} <Ether width="8" />
+      </Container>
+
+      <Container>Status: {status ? 'Close' : 'Open'}</Container>
+
+      <Container>Number of players: {numOfPlayers}</Container>
+
+      <Container>Players required: {playersRequired}</Container>
+
+      <Players />
+
+      <Footer id="footer">
+        <a
+          href={`https://rinkeby.etherscan.io/address/${address}`}
+          target="blank"
+        >
+          View contract
+        </a>
+      </Footer>
     </>
+  )
+}
+
+function Main() {
+  return (
+    <MainWindow id="main">
+      <GlobalStyle />
+      <WalletProvider>
+        <ContractProvider>
+          <Root />
+        </ContractProvider>
+      </WalletProvider>
+    </MainWindow>
   )
 }
 

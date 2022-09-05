@@ -5,14 +5,16 @@ import { useContract } from '../Hooks/useContract'
 const ContractContext = React.createContext()
 
 function ContractProvider({ children }) {
-  const data = useContract()
+  const { data, buyTicket } = useContract()
 
   const { isLoading } = data
 
   if (isLoading) return <Spinner />
 
   return (
-    <ContractContext.Provider value={data}>{children}</ContractContext.Provider>
+    <ContractContext.Provider value={{ ...data, buyTicket }}>
+      {children}
+    </ContractContext.Provider>
   )
 }
 
