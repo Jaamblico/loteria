@@ -10,11 +10,9 @@ export const Players = () => {
     <Container>
       <div>
         Players:
-        <ul>
-          {players.map((playerAddress, index) => (
-            <li key={`${String(playerAddress)}-${index}`}>{playerAddress}</li>
-          ))}
-        </ul>
+        <marquee>
+          <p>{players.join(', ')}</p>
+        </marquee>
       </div>
     </Container>
   )
