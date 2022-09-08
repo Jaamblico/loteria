@@ -1,18 +1,21 @@
 import * as React from 'react'
+
 // Styles (should not be here)
 import styled from 'styled-components'
 import { createGlobalStyle } from 'styled-components'
 
-import { Container } from '../Components/Container'
-import { Ether } from '../Components/Icons/Ether'
-import { Title } from '../Components/Title'
 // Context
 import { ContractProvider, useContractData } from '../Context/ContractContext'
 import { useWalletContext, WalletProvider } from '../Context/WalletContext'
+import { lotteryContract } from '../services'
+
 // Components
 import { BuyAction } from './BuyAction/BuyAction'
 import { ConnectWallet } from './ConnectWallet/ConnectWallet'
 import { Players } from './Players/Players'
+import { Container } from '../Components/Container'
+import { Ether } from '../Components/Icons/Ether'
+import { Title } from '../Components/Title'
 
 const GlobalStyle = createGlobalStyle`
   * {
@@ -30,9 +33,17 @@ const MainWindow = styled.section`
 const Footer = styled.section``
 
 function Root() {
-  const { lastWinner, prize, status, numOfPlayers, playersRequired, address } = useContractData()
+  const { lastWinner, prize, status, numOfPlayers, playersRequired, address } =
+    useContractData()
 
   const { account } = useWalletContext()
+
+  React.useEffect(() => {
+    lotteryContract.on('EnterLottery', () => {
+      console.log('EnterLottery')
+      // updatePlayers
+    })
+  }, [])
 
   return (
     <>
@@ -57,8 +68,11 @@ function Root() {
       <Players />
 
       <Container>
-        <Footer id="footer">
-          <a href={`https://rinkeby.etherscan.io/address/${address}`} target="blank">
+        <Footer>
+          <a
+            href={`https://rinkeby.etherscan.io/address/${address}`}
+            target="blank"
+          >
             View contract
           </a>
         </Footer>
@@ -67,6 +81,7 @@ function Root() {
   )
 }
 
+// TODO Add to HOC
 function Main() {
   return (
     <MainWindow id="main">

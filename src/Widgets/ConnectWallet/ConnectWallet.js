@@ -11,7 +11,11 @@ export const ConnectWallet = () => {
 
   return (
     <Container>
-      <Button id="connect-wallet-button-container" name="Connect Wallet" handleClick={connectWallet} />
+      <Button
+        id="connect-wallet-button-container"
+        name="Connect Wallet"
+        handleClick={connectWallet}
+      />
     </Container>
   )
 }

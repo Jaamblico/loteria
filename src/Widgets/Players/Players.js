@@ -3,6 +3,8 @@ import * as React from 'react'
 import { Container } from '../../Components/Container'
 import { useContractData } from '../../Context/ContractContext'
 
+const a = 'HOLA'
+
 export const Players = () => {
   const { players } = useContractData()
 

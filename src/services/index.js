@@ -10,7 +10,11 @@ const { formatEther, parseEther } = ethers.utils
 
 const defaultProvider = ethers.getDefaultProvider(CHAIN_ID)
 
-export const lotteryContract = new ethers.Contract(CONTRACT_ADDRESS, abi.abi, defaultProvider)
+export const lotteryContract = new ethers.Contract(
+  CONTRACT_ADDRESS,
+  abi.abi,
+  defaultProvider,
+)
 
 export const getContractAddress = () => lotteryContract.address
 
@@ -65,9 +69,14 @@ export const buyLotteryTicket = async () => {
 
     const signer = provider.getSigner()
 
-    const lotteryContractSigned = new ethers.Contract(CONTRACT_ADDRESS, abi.abi, signer)
+    const lotteryContractSigned = new ethers.Contract(
+      CONTRACT_ADDRESS,
+      abi.abi,
+      signer,
+    )
 
-    const ticketPrice = formatEther(await lotteryContract.getTicketPrice()) ?? null
+    const ticketPrice =
+      formatEther(await lotteryContract.getTicketPrice()) ?? null
 
     const buyTicketTxn = await lotteryContractSigned.buyTicket({
       value: parseEther(ticketPrice),

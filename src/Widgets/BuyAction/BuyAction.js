@@ -20,7 +20,11 @@ export const BuyAction = () => {
   return (
     <Container>
       <BuyActionContainer>
-        <Button id="button-container" name="Comprar Ticket" handleClick={buyTicket} />
+        <Button
+          id="button-container"
+          name="Comprar Ticket"
+          handleClick={buyTicket}
+        />
         <Price price={price} /> <AnimatedEther width="20" />
       </BuyActionContainer>
     </Container>

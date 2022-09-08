@@ -17,26 +17,23 @@ const INITIAL_STATE = {
 export const useContract = () => {
   const [data, setData] = React.useState(INITIAL_STATE)
 
-  React.useEffect(() => {
-    async function getStaticInfo() {
-      const addressBalance = await getBalance()
-      const lotteryData = await getLotteryData()
+  async function getStaticInfo() {
+    const addressBalance = await getBalance() // Promise.race[]
+    const lotteryData = await getLotteryData() // Promise.race[]
 
-      setData(data => ({
-        ...data,
-        ...lotteryData,
-        balance: addressBalance,
-        isLoading: false,
-      }))
-    }
+    setData(data => ({
+      ...data,
+      ...lotteryData,
+      balance: addressBalance,
+      isLoading: false,
+    }))
+  }
+
+  React.useEffect(() => {
     getStaticInfo()
   }, [])
 
-  const buyTicket = async () => {
-    const confirmation = await buyLotteryTicket()
-
-    return confirmation
-  }
+  const buyTicket = async () => await buyLotteryTicket()
 
   return { data, buyTicket }
 }
