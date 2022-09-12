@@ -18,15 +18,19 @@ export const BuyAction = () => {
   const { price, buyTicket } = useContractData()
 
   return (
-    <Container>
-      <BuyActionContainer>
-        <Button
-          id="button-container"
-          name="Comprar Ticket"
-          handleClick={buyTicket}
-        />
-        <Price price={price} /> <AnimatedEther width="20" />
-      </BuyActionContainer>
-    </Container>
+    <>
+      <Container>
+        <Price price={price + ' + Gas '} /> <AnimatedEther width="20" />
+      </Container>
+      <Container>
+        <BuyActionContainer>
+          <Button
+            id="button-container"
+            name="Comprar Ticket"
+            handleClick={buyTicket}
+          />
+        </BuyActionContainer>
+      </Container>
+    </>
   )
 }

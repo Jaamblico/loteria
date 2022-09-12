@@ -15,7 +15,9 @@ import { ConnectWallet } from './ConnectWallet/ConnectWallet'
 import { Players } from './Players/Players'
 import { Container } from '../Components/Container'
 import { Ether } from '../Components/Icons/Ether'
+import { Goblet } from '../Components/Icons/Goblet'
 import { Title } from '../Components/Title'
+import { Quote } from '../Components/Quote'
 
 const GlobalStyle = createGlobalStyle`
   * {
@@ -29,6 +31,8 @@ const MainWindow = styled.section`
   padding: 0 48px;
   width: 100vw;
   height: 100vh;
+  border-style: double;
+  border-width: 16px;
 `
 const Footer = styled.section``
 
@@ -48,7 +52,14 @@ function Root() {
   return (
     <>
       <Container>
+        <Goblet />
+      </Container>
+      <Container>
         <Title title="Lotería de Babilonia" />
+      </Container>
+
+      <Container>
+        <Quote quote="'En la realidad el número de sorteos es infinito. Ninguna decisión es final, todas se ramifican en otras.' J.L.B" />
       </Container>
 
       {account ? <BuyAction /> : <ConnectWallet />}
