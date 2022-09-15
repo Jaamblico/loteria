@@ -10,9 +10,7 @@ export const Players = () => {
     <Container>
       <div>
         Players:
-        <marquee>
-          <p>{players.join(', ')}</p>
-        </marquee>
+        <marquee>{players ? <p>{players?.join(', ')}</p> : '-'}</marquee>
       </div>
     </Container>
   )

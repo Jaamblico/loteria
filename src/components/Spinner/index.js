@@ -4,7 +4,7 @@ import * as Styled from './Spinner.styled'
 
 export const Spinner = () => (
   <Styled.SpinnerContainer>
-    <Styled.Spinner viewBox="0 0 50 50">
+    <Styled.Spinner width={50} height={50}>
       <circle
         className="path"
         cx="25"
