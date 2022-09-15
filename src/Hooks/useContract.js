@@ -1,39 +1,48 @@
 import React from 'react'
 
+import { LOTTERY_INITIAL_STATE } from '../constants'
 import { buyLotteryTicket, getBalance, getLotteryData } from '../services'
 
-const INITIAL_STATE = {
-  isLoading: true,
-  prize: 0,
-  price: 0,
-  status: 0,
-  numOfPlayers: 0,
-  players: [],
-  playersRequired: 0,
-  lastWinner: '',
-  address: '',
-}
-
 export const useContract = () => {
-  const [data, setData] = React.useState(INITIAL_STATE)
+  const [data, setData] = React.useState(LOTTERY_INITIAL_STATE)
 
   async function getStaticInfo() {
     const addressBalance = await getBalance() // Promise.race[]
     const lotteryData = await getLotteryData() // Promise.race[]
 
-    setData(data => ({
-      ...data,
+    setData(state => ({
+      ...state,
       ...lotteryData,
       balance: addressBalance,
       isLoading: false,
     }))
   }
 
+  const setPlayers = address =>
+    setData(state => ({
+      ...state,
+      players: [...state.players, address],
+      numOfPlayers: state.numOfPlayers + 1,
+    }))
+
+  const setReloading = () =>
+    setData(state => ({
+      ...state,
+      isReloading: !state.isReloading,
+    }))
+
   React.useEffect(() => {
     getStaticInfo()
   }, [])
 
-  const buyTicket = async () => await buyLotteryTicket()
+  const buyTicket = async () => {
+    await buyLotteryTicket()
 
-  return { data, buyTicket }
+    setData(state => ({
+      ...state,
+      isReloading: true,
+    }))
+  }
+
+  return { data, buyTicket, setPlayers, setReloading }
 }

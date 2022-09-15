@@ -2,9 +2,6 @@ import styled from 'styled-components'
 
 export const Spinner = styled.svg`
   animation: rotate 1s linear infinite;
-  margin: 40px;
-  width: 50px;
-  height: 50px;
 
   & .path {
     stroke: #5652bf;

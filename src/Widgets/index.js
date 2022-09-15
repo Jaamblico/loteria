@@ -7,7 +7,6 @@ import { createGlobalStyle } from 'styled-components'
 // Context
 import { ContractProvider, useContractData } from '../Context/ContractContext'
 import { useWalletContext, WalletProvider } from '../Context/WalletContext'
-import { lotteryContract } from '../services'
 
 // Components
 import { BuyAction } from './BuyAction/BuyAction'
@@ -15,9 +14,10 @@ import { ConnectWallet } from './ConnectWallet/ConnectWallet'
 import { Players } from './Players/Players'
 import { Container } from '../Components/Container'
 import { Ether } from '../Components/Icons/Ether'
-import { Goblet } from '../Components/Icons/Goblet'
 import { Title } from '../Components/Title'
 import { Quote } from '../Components/Quote'
+import { Price } from '../Components/Price'
+import { AnimatedEther } from '../Components/Icons/AnimatedEther'
 
 const GlobalStyle = createGlobalStyle`
   * {
@@ -28,60 +28,41 @@ const GlobalStyle = createGlobalStyle`
 `
 
 const MainWindow = styled.section`
-  padding: 0 48px;
-  width: 100vw;
   height: 100vh;
-  border-style: double;
-  border-width: 16px;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  padding: 0 48px;
 `
 const Footer = styled.section``
 
 function Root() {
-  const { lastWinner, prize, status, numOfPlayers, playersRequired, address } =
+  const { lastWinner, prize, status, numOfPlayers, playersRequired, price } =
     useContractData()
 
   const { account } = useWalletContext()
 
-  React.useEffect(() => {
-    lotteryContract.on('EnterLottery', () => {
-      console.log('EnterLottery')
-      // updatePlayers
-    })
-  }, [])
-
   return (
     <>
+      <img src="/globe.jpeg" alt="new" />
+      <Title title="Lotería de Babilonia" />
+      <Quote quote="'En la realidad el número de sorteos es infinito. Ninguna decisión es final, todas se ramifican en otras.' J.L.B" />
       <Container>
-        <Goblet />
+        <Price price={price + ' + Gas '} /> <AnimatedEther width="20" />
       </Container>
-      <Container>
-        <Title title="Lotería de Babilonia" />
-      </Container>
-
-      <Container>
-        <Quote quote="'En la realidad el número de sorteos es infinito. Ninguna decisión es final, todas se ramifican en otras.' J.L.B" />
-      </Container>
-
       {account ? <BuyAction /> : <ConnectWallet />}
-
       <Container>Last winner: {lastWinner} 🎉🎉🎉</Container>
-
       <Container>
         The Fat One: {prize} <Ether width="8" />
       </Container>
-
       <Container>Status: {status ? 'Close' : 'Open'}</Container>
-
       <Container>Number of players: {numOfPlayers}</Container>
-
       <Container>Players required: {playersRequired}</Container>
-
       <Players />
-
       <Container>
         <Footer>
           <a
-            href={`https://rinkeby.etherscan.io/address/${address}`}
+            href={`https://rinkeby.etherscan.io/address/0x03E920cBEd6b209EaC9ABE24F9C9778Cf682EC1e`}
             target="blank"
           >
             View contract
@@ -95,14 +76,16 @@ function Root() {
 // TODO Add to HOC
 function Main() {
   return (
-    <MainWindow id="main">
+    <>
       <GlobalStyle />
       <WalletProvider>
         <ContractProvider>
-          <Root />
+          <MainWindow>
+            <Root />
+          </MainWindow>
         </ContractProvider>
       </WalletProvider>
-    </MainWindow>
+    </>
   )
 }
 

@@ -4,8 +4,6 @@ import styled from 'styled-components'
 
 import { Button } from '../../Components/Button'
 import { Container } from '../../Components/Container'
-import { AnimatedEther } from '../../Components/Icons/AnimatedEther'
-import { Price } from '../../Components/Price'
 import { useContractData } from '../../Context/ContractContext'
 
 const BuyActionContainer = styled.div`
@@ -15,22 +13,17 @@ const BuyActionContainer = styled.div`
 `
 
 export const BuyAction = () => {
-  const { price, buyTicket } = useContractData()
+  const { buyTicket } = useContractData()
 
   return (
-    <>
-      <Container>
-        <Price price={price + ' + Gas '} /> <AnimatedEther width="20" />
-      </Container>
-      <Container>
-        <BuyActionContainer>
-          <Button
-            id="button-container"
-            name="Comprar Ticket"
-            handleClick={buyTicket}
-          />
-        </BuyActionContainer>
-      </Container>
-    </>
+    <Container>
+      <BuyActionContainer>
+        <Button
+          id="button-container"
+          name="Comprar Ticket"
+          handleClick={buyTicket}
+        />
+      </BuyActionContainer>
+    </Container>
   )
 }
