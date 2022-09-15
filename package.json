@@ -1,18 +1,7 @@
 {
-  "name": "loteria",
+  "name": "loteria-de-babilonia",
   "version": "0.1.0",
   "private": true,
-  "dependencies": {
-    "@openzeppelin/contracts": "^4.7.3",
-    "animejs": "^3.2.1",
-    "ethers": "^5.6.9",
-    "react": "^18.2.0",
-    "react-animejs": "^0.5.6",
-    "react-dom": "^18.2.0",
-    "react-scripts": "5.0.1",
-    "styled-components": "^5.3.5",
-    "web-vitals": "^2.1.4"
-  },
   "scripts": {
     "start": "ESLINT_NO_DEV_ERRORS=true react-scripts start",
     "build": "react-scripts build",
@@ -23,6 +12,17 @@
     "prettier": "prettier --ignore-path .gitignore \"**/*.{js,jsx,json}\"",
     "fix:format": "yarn prettier --write",
     "fix:lint": "yarn eslint . --fix"
+  },
+  "dependencies": {
+    "@openzeppelin/contracts": "^4.7.3",
+    "animejs": "^3.2.1",
+    "ethers": "^5.6.9",
+    "react": "^18.2.0",
+    "react-animejs": "^0.5.6",
+    "react-dom": "^18.2.0",
+    "react-scripts": "5.0.1",
+    "styled-components": "^5.3.5",
+    "web-vitals": "^2.1.4"
   },
   "devDependencies": {
     "@babel/eslint-parser": "^7.18.9",
