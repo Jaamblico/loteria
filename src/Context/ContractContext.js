@@ -3,7 +3,7 @@ import * as React from 'react'
 import { Spinner } from '../Components/Spinner'
 import { useContract } from '../Hooks/useContract'
 
-const ContractContext = React.createContext()
+const ContractContext = React.createContext({})
 
 function ContractProvider({ children }) {
   const { data, buyTicket, setPlayers, setReloading, isReloading } =
