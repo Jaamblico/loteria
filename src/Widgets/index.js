@@ -53,7 +53,9 @@ function Root() {
 
   return (
     <>
-      <img src="/globe.jpeg" alt="new" />
+      <Container>
+        <img src="/globe.jpeg" alt="new" />
+      </Container>
       <Title title="Lotería de Babilonia" />
       <Quote quote="'En la realidad el número de sorteos es infinito. Ninguna decisión es final, todas se ramifican en otras.' J.L.B" />
       <Container>
