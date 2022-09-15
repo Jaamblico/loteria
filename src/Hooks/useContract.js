@@ -18,12 +18,7 @@ export const useContract = () => {
     }))
   }
 
-  const setPlayers = address =>
-    setData(state => ({
-      ...state,
-      players: [...state.players, address],
-      numOfPlayers: state.numOfPlayers + 1,
-    }))
+  const updateContract = () => getStaticInfo()
 
   const setReloading = () =>
     setData(state => ({
@@ -44,5 +39,5 @@ export const useContract = () => {
     }))
   }
 
-  return { data, buyTicket, setPlayers, setReloading }
+  return { data, buyTicket, updateContract, setReloading }
 }

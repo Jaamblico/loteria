@@ -83,10 +83,10 @@ export const buyLotteryTicket = async () => {
       value: ticketPrice,
       gasLimit: 300000,
     })
-    // console.log('Mining...', buyTicketTxn.hash)
+    console.log('Mining...', buyTicketTxn.hash)
 
     await buyTicketTxn.wait()
-    // console.log('Mined -- ', buyTicketTxn.hash)
+    console.log('Mined -- ', buyTicketTxn.hash)
   } catch (e) {
     console.error(e)
   }
