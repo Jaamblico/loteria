@@ -1,4 +1,6 @@
 import { ethers } from 'ethers'
+
+import { formatEther } from '../utils'
 import { LOTTERY_INITIAL_STATE } from '../constants'
 
 import abi from '../utils/Lottery.json'
@@ -6,8 +8,6 @@ import abi from '../utils/Lottery.json'
 const CONTRACT_ADDRESS = '0x03E920cBEd6b209EaC9ABE24F9C9778Cf682EC1e'
 
 const CHAIN_ID = 'rinkeby'
-
-const { formatEther, parseEther } = ethers.utils
 
 const defaultProvider = ethers.getDefaultProvider(CHAIN_ID)
 
@@ -33,9 +33,9 @@ export const getBalance = async () => {
 
 export const getLotteryData = async () => {
   try {
-    const prize = formatEther(await lotteryContract.getPrize())
+    const prize = await lotteryContract.getPrize()
 
-    const price = formatEther(await lotteryContract.getTicketPrice())
+    const price = await lotteryContract.getTicketPrice()
 
     const status = await lotteryContract.getLotteryState()
 
@@ -67,7 +67,6 @@ export const getLotteryData = async () => {
 
 export const buyLotteryTicket = async () => {
   try {
-    // @ts-ignore
     const provider = new ethers.providers.Web3Provider(window.ethereum)
 
     const signer = provider.getSigner()
@@ -78,17 +77,16 @@ export const buyLotteryTicket = async () => {
       signer,
     )
 
-    const ticketPrice =
-      formatEther(await lotteryContract.getTicketPrice()) ?? null
+    const ticketPrice = await lotteryContract.getTicketPrice()
 
     const buyTicketTxn = await lotteryContractSigned.buyTicket({
-      value: parseEther(ticketPrice),
+      value: ticketPrice,
       gasLimit: 300000,
     })
-    // console.log('Mining...', buyTicketTxn.hash)
+    console.log('Mining...', buyTicketTxn.hash)
 
     await buyTicketTxn.wait()
-    // console.log('Mined -- ', buyTicketTxn.hash)
+    console.log('Mined -- ', buyTicketTxn.hash)
   } catch (e) {
     console.error(e)
   }

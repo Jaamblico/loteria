@@ -8,10 +8,17 @@ import { createGlobalStyle } from 'styled-components'
 import { ContractProvider, useContractData } from '../Context/ContractContext'
 import { useWalletContext, WalletProvider } from '../Context/WalletContext'
 
-// Components
+// Utils
+import { formatEther } from '../utils'
+import { lotteryContract } from '../services'
+import { useLotteryEvents } from '../Hooks/useLotteryEvents'
+
+// Widgets
 import { BuyAction } from './BuyAction/BuyAction'
 import { ConnectWallet } from './ConnectWallet/ConnectWallet'
 import { Players } from './Players/Players'
+
+// Components
 import { Container } from '../Components/Container'
 import { Ether } from '../Components/Icons/Ether'
 import { Title } from '../Components/Title'
@@ -37,24 +44,39 @@ const MainWindow = styled.section`
 const Footer = styled.section``
 
 function Root() {
-  const { lastWinner, prize, status, numOfPlayers, playersRequired, price } =
-    useContractData()
+  const {
+    lastWinner,
+    prize,
+    status,
+    numOfPlayers,
+    playersRequired,
+    price,
+    balance,
+  } = useContractData()
+
+  useLotteryEvents(lotteryContract)
 
   const { account } = useWalletContext()
 
   return (
     <>
-      <img src="/globe.jpeg" alt="new" />
-      <Title title="Lotería de Babilonia" />
-      <Quote quote="'En la realidad el número de sorteos es infinito. Ninguna decisión es final, todas se ramifican en otras.' J.L.B" />
       <Container>
-        <Price price={price + ' + Gas '} /> <AnimatedEther width="20" />
+        <img src="/globe.jpeg" alt="new" height="100px" />
+      </Container>
+      <Title title="Lotería de Babilonia" />
+      <Quote quote="'En la realidad el número de sorteos es infinito. Ninguna decisión es final, todas se ramifican en otras.' J.L.B." />
+      <Container>
+        <Price price={formatEther(price) + ' + Gas'} />{' '}
+        <AnimatedEther width="20" />
       </Container>
       {account ? <BuyAction /> : <ConnectWallet />}
       <Container>Last winner: {lastWinner} 🎉🎉🎉</Container>
       <Container>
-        The Fat One: {prize} <Ether width="8" />
+        The Fat One: {formatEther(prize)} <Ether width="8" />
       </Container>
+      {/* <Container>
+        Contract Balance: {balance} <Ether width="8" />
+      </Container> */}
       <Container>Status: {status ? 'Close' : 'Open'}</Container>
       <Container>Number of players: {numOfPlayers}</Container>
       <Container>Players required: {playersRequired}</Container>

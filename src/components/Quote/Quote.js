@@ -19,7 +19,12 @@
 import * as React from 'react'
 
 import * as Styled from './Quote.styled'
+import { Container } from '../Container'
 
 export function Quote({ quote }) {
-  return <Styled.Quote>{quote}</Styled.Quote>
+  return (
+    <Container>
+      <Styled.Quote>{quote}</Styled.Quote>
+    </Container>
+  )
 }
