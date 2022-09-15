@@ -44,8 +44,15 @@ const MainWindow = styled.section`
 const Footer = styled.section``
 
 function Root() {
-  const { lastWinner, prize, status, numOfPlayers, playersRequired, price } =
-    useContractData()
+  const {
+    lastWinner,
+    prize,
+    status,
+    numOfPlayers,
+    playersRequired,
+    price,
+    balance,
+  } = useContractData()
 
   useLotteryEvents(lotteryContract)
 
@@ -67,6 +74,9 @@ function Root() {
       <Container>
         The Fat One: {formatEther(prize)} <Ether width="8" />
       </Container>
+      {/* <Container>
+        Contract Balance: {balance} <Ether width="8" />
+      </Container> */}
       <Container>Status: {status ? 'Close' : 'Open'}</Container>
       <Container>Number of players: {numOfPlayers}</Container>
       <Container>Players required: {playersRequired}</Container>

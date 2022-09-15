@@ -7,13 +7,13 @@ export const useContract = () => {
   const [data, setData] = React.useState(LOTTERY_INITIAL_STATE)
 
   async function getStaticInfo() {
-    const addressBalance = await getBalance() // Promise.race[]
+    const balance = await getBalance() // Promise.race[]
     const lotteryData = await getLotteryData() // Promise.race[]
 
     setData(state => ({
       ...state,
       ...lotteryData,
-      balance: addressBalance,
+      balance,
       isLoading: false,
     }))
   }
