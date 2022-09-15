@@ -54,10 +54,10 @@ function Root() {
   return (
     <>
       <Container>
-        <img src="/globe.jpeg" alt="new" />
+        <img src="/globe.jpeg" alt="new" height="100px" />
       </Container>
       <Title title="Lotería de Babilonia" />
-      <Quote quote="'En la realidad el número de sorteos es infinito. Ninguna decisión es final, todas se ramifican en otras.' J.L.B" />
+      <Quote quote="'En la realidad el número de sorteos es infinito. Ninguna decisión es final, todas se ramifican en otras.' J.L.B." />
       <Container>
         <Price price={formatEther(price) + ' + Gas'} />{' '}
         <AnimatedEther width="20" />
