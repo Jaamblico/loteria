@@ -1,22 +1,25 @@
 import React from 'react'
 
-import { useContract } from './useContract'
-import { lotteryContract } from '../services'
+// Hooks
+import { useContractData } from '../Context/ContractContext'
 
-export function useLotteryEvents() {
-  const { setPlayers } = useContract()
+export function useLotteryEvents(lotteryContract) {
+  const { setPlayers } = useContractData()
 
   const handleEvent = React.useCallback(
     event => {
       const { address } = event || {}
-      console.log('EnterLottery', address)
-      console.log({ event })
+      console.log(event)
       setPlayers(address)
     },
     [setPlayers],
   )
 
   React.useEffect(() => {
-    lotteryContract.on('EnterLottery', (_, e) => handleEvent(e))
-  }, [handleEvent])
+    if (lotteryContract) {
+      lotteryContract.on('EnterLottery', (_, e) => handleEvent(e))
+    }
+
+    return () => lotteryContract.off('EnterLottery')
+  }, [])
 }
