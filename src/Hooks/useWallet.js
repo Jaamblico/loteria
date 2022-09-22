@@ -1,4 +1,3 @@
-/* eslint-disable no-undef */
 import * as React from 'react'
 
 const ACCOUNTS = 'eth_accounts'
@@ -8,7 +7,7 @@ export const useWallet = () => {
   const [account, setAccount] = React.useState(null)
 
   const connectWallet = async () => {
-    const accounts = await ethereum.request({
+    const accounts = await window?.ethereum.request({
       method: REQUEST_ACCOUNTS,
     })
 
@@ -20,7 +19,7 @@ export const useWallet = () => {
   }
 
   const isWalletConnected = async () => {
-    const accounts = await ethereum.request({
+    const accounts = await window?.ethereum.request({
       method: ACCOUNTS,
     })
 
