@@ -1,3 +1,4 @@
+/* eslint-disable no-undef */
 import * as React from 'react'
 
 const ACCOUNTS = 'eth_accounts'

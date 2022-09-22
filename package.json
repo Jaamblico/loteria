@@ -1,9 +1,16 @@
 {
   "name": "loteria-de-babilonia",
   "version": "0.1.0",
+  "home": "https://jaamblico.github.io/loteria",
   "private": true,
   "scripts": {
+<<<<<<< HEAD
     "start": "react-scripts start",
+=======
+    "predeploy": "npm run build",
+    "deploy": "gh-pages -d build",
+    "start": "ESLINT_NO_DEV_ERRORS=true react-scripts start",
+>>>>>>> 2ba018546313f5333d95df0ac5cf147fa8100100
     "build": "react-scripts build",
     "test": "react-scripts test",
     "check:format": "yarn prettier --list-different",
@@ -42,6 +49,7 @@
     "eslint-plugin-react-hooks": "^4.6.0",
     "eslint-plugin-simple-import-sort": "^8.0.0",
     "eslint-plugin-unused-imports": "^2.0.0",
+    "gh-pages": "^4.0.0",
     "prettier": "^2.7.1"
   },
   "browserslist": {
