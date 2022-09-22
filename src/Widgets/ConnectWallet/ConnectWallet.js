@@ -13,7 +13,7 @@ export const ConnectWallet = () => {
     <Container>
       <Button
         id="connect-wallet-button-container"
-        name="Connect Wallet"
+        name="Conectar Billetera"
         handleClick={connectWallet}
       />
     </Container>

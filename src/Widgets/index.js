@@ -3,6 +3,9 @@ import * as React from 'react'
 // Styles (should not be here)
 import styled from 'styled-components'
 import { createGlobalStyle } from 'styled-components'
+import FontStyles from '../fontStyles'
+
+// import RobotoMono from './fonts/RobotoMono-Regular.ttf'
 
 // Context
 import { ContractProvider, useContractData } from '../Context/ContractContext'
@@ -20,10 +23,11 @@ import { Players } from './Players/Players'
 
 // Components
 import { Container } from '../Components/Container'
-import { Ether } from '../Components/Icons/Ether'
+import { Estado } from '../Components/Estado'
 import { Title } from '../Components/Title'
 import { Quote } from '../Components/Quote'
 import { Price } from '../Components/Price'
+import { Fat } from '../Components/Fat'
 import { AnimatedEther } from '../Components/Icons/AnimatedEther'
 
 const GlobalStyle = createGlobalStyle`
@@ -70,17 +74,19 @@ function Root() {
         <AnimatedEther width="20" />
       </Container>
       {account ? <BuyAction /> : <ConnectWallet />}
-      <Container>Last winner: {lastWinner} 🎉🎉🎉</Container>
+      {/*}<Container>Último Ganador: {lastWinner} 🎉🎉🎉</Container>*/}
       <Container>
-        The Fat One: {formatEther(prize)} <Ether width="8" />
+        <Fat fat={formatEther(prize)} />
       </Container>
       {/* <Container>
         Contract Balance: {balance} <Ether width="8" />
       </Container> */}
-      <Container>Status: {status ? 'Close' : 'Open'}</Container>
-      <Container>Number of players: {numOfPlayers}</Container>
-      <Container>Players required: {playersRequired}</Container>
+      <Container>
+        <Estado estado={status ? 'Cerrado' : 'Abierto'} />
+      </Container>
+      <Container>Jugadores: {numOfPlayers}</Container>
       <Players />
+      <Container>Jugadores Requeridos: {playersRequired}</Container>
       <Container>
         <Footer>
           <a
@@ -102,6 +108,7 @@ function Main() {
       <GlobalStyle />
       <WalletProvider>
         <ContractProvider>
+          <FontStyles />
           <MainWindow>
             <Root />
           </MainWindow>
