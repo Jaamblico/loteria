@@ -4,13 +4,9 @@
   "home": "https://jaamblico.github.io/loteria",
   "private": true,
   "scripts": {
-<<<<<<< HEAD
-    "start": "react-scripts start",
-=======
     "predeploy": "npm run build",
     "deploy": "gh-pages -d build",
     "start": "ESLINT_NO_DEV_ERRORS=true react-scripts start",
->>>>>>> 2ba018546313f5333d95df0ac5cf147fa8100100
     "build": "react-scripts build",
     "test": "react-scripts test",
     "check:format": "yarn prettier --list-different",
