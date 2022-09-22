@@ -1,7 +1,7 @@
 {
   "name": "loteria-de-babilonia",
   "version": "0.1.0",
-  "home": "https://jaamblico.github.io/loteria",
+  "home": "https://jaamblico.github.io/loteria/build",
   "private": true,
   "scripts": {
     "predeploy": "npm run build",
