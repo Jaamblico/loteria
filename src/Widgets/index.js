@@ -5,7 +5,11 @@ import styled from 'styled-components'
 import { createGlobalStyle } from 'styled-components'
 import FontStyles from '../fontStyles'
 
+<<<<<<< HEAD
 // import RobotoMono from './fonts/RobotoMono-Regular.ttf'
+=======
+import goblet from '../assets/images/goblet.jpeg'
+>>>>>>> origin/master
 
 // Context
 import { ContractProvider, useContractData } from '../Context/ContractContext'
@@ -65,7 +69,7 @@ function Root() {
   return (
     <>
       <Container>
-        <img src="/globe.jpeg" alt="new" height="100px" />
+        <img src={goblet} alt="goblet" height="100px" />
       </Container>
       <Title title="Lotería de Babilonia" />
       <Quote quote="'En la realidad el número de sorteos es infinito. Ninguna decisión es final, todas se ramifican en otras.' J.L.B." />

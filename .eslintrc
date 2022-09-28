@@ -1,6 +1,6 @@
 {
   "extends": ["eslint:recommended", "plugin:prettier/recommended", "plugin:react/recommended"],
-  "plugins": ["react-hooks", "unused-imports"],
+  "plugins": ["react-hooks", "unused-imports", "only-warn"],
   "parser": "@babel/eslint-parser",
 
   "env": {
