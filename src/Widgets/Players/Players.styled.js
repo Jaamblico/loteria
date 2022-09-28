@@ -1,7 +1,7 @@
 import styled from 'styled-components'
 
 export const PlayersContainer = styled.div`
-  width: 900px;
+  width: 66vw;
   white-space: nowrap;
   overflow-y: hidden;
   height: 1em;

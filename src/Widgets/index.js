@@ -5,11 +5,7 @@ import styled from 'styled-components'
 import { createGlobalStyle } from 'styled-components'
 import FontStyles from '../fontStyles'
 
-<<<<<<< HEAD
-// import RobotoMono from './fonts/RobotoMono-Regular.ttf'
-=======
 import goblet from '../assets/images/goblet.jpeg'
->>>>>>> origin/master
 
 // Context
 import { ContractProvider, useContractData } from '../Context/ContractContext'
@@ -27,7 +23,10 @@ import { Players } from './Players/Players'
 
 // Components
 import { Container } from '../Components/Container'
+import { InfoContainer } from '../Components/InfoContainer'
 import { Estado } from '../Components/Estado'
+import { Jugadores } from '../Components/Jugadores'
+import { JugadoresRequeridos } from '../Components/JugadoresRequeridos'
 import { Title } from '../Components/Title'
 import { Quote } from '../Components/Quote'
 import { Price } from '../Components/Price'
@@ -79,18 +78,24 @@ function Root() {
       </Container>
       {account ? <BuyAction /> : <ConnectWallet />}
       {/*}<Container>Último Ganador: {lastWinner} 🎉🎉🎉</Container>*/}
-      <Container>
-        <Fat fat={formatEther(prize)} />
-      </Container>
-      {/* <Container>
+      <InfoContainer>
+        <Container>
+          <Fat fat={formatEther(prize)} />
+        </Container>
+        {/* <Container>
         Contract Balance: {balance} <Ether width="8" />
       </Container> */}
-      <Container>
-        <Estado estado={status ? 'Cerrado' : 'Abierto'} />
-      </Container>
-      <Container>Jugadores: {numOfPlayers}</Container>
-      <Players />
-      <Container>Jugadores Requeridos: {playersRequired}</Container>
+        <Container>
+          <Estado estado={status ? 'Cerrado' : 'Abierto'} />
+        </Container>
+        <Container>
+          <Jugadores jugadores={numOfPlayers} />
+        </Container>
+        <Players />
+        <Container>
+          <JugadoresRequeridos jugadoresRequeridos={playersRequired} />
+        </Container>
+      </InfoContainer>
       <Container>
         <Footer>
           <a
