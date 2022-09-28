@@ -13,4 +13,7 @@ export const PlayersContainer = styled.div`
 
 export const Player = styled.div`
   display: inline-block;
+  &:not(:first-child) {
+    margin-left: 1em;
+  }
 `

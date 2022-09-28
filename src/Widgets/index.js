@@ -8,29 +8,23 @@ import FontStyles from '../fontStyles'
 import goblet from '../assets/images/goblet.jpeg'
 
 // Context
-import { ContractProvider, useContractData } from '../Context/ContractContext'
+import { ContractProvider } from '../Context/ContractContext'
 import { useWalletContext, WalletProvider } from '../Context/WalletContext'
 
 // Utils
-import { formatEther } from '../utils'
 import { lotteryContract } from '../services'
 import { useLotteryEvents } from '../Hooks/useLotteryEvents'
 
 // Widgets
 import { BuyAction } from './BuyAction/BuyAction'
 import { ConnectWallet } from './ConnectWallet/ConnectWallet'
-import { Players } from './Players/Players'
 
 // Components
 import { Container } from '../Components/Container'
 import { InfoContainer } from '../Components/InfoContainer'
-import { Estado } from '../Components/Estado'
-import { Jugadores } from '../Components/Jugadores'
-import { JugadoresRequeridos } from '../Components/JugadoresRequeridos'
 import { Title } from '../Components/Title'
 import { Quote } from '../Components/Quote'
 import { Price } from '../Components/Price'
-import { Fat } from '../Components/Fat'
 import { AnimatedEther } from '../Components/Icons/AnimatedEther'
 
 const GlobalStyle = createGlobalStyle`
@@ -51,16 +45,6 @@ const MainWindow = styled.section`
 const Footer = styled.section``
 
 function Root() {
-  const {
-    lastWinner,
-    prize,
-    status,
-    numOfPlayers,
-    playersRequired,
-    price,
-    balance,
-  } = useContractData()
-
   useLotteryEvents(lotteryContract)
 
   const { account } = useWalletContext()
@@ -73,29 +57,13 @@ function Root() {
       <Title title="Lotería de Babilonia" />
       <Quote quote="'En la realidad el número de sorteos es infinito. Ninguna decisión es final, todas se ramifican en otras.' J.L.B." />
       <Container>
-        <Price price={formatEther(price) + ' + Gas'} />{' '}
-        <AnimatedEther width="20" />
+        <Price /> <AnimatedEther width="20" />
       </Container>
       {account ? <BuyAction /> : <ConnectWallet />}
       {/*}<Container>Último Ganador: {lastWinner} 🎉🎉🎉</Container>*/}
-      <InfoContainer>
-        <Container>
-          <Fat fat={formatEther(prize)} />
-        </Container>
-        {/* <Container>
-        Contract Balance: {balance} <Ether width="8" />
-      </Container> */}
-        <Container>
-          <Estado estado={status ? 'Cerrado' : 'Abierto'} />
-        </Container>
-        <Container>
-          <Jugadores jugadores={numOfPlayers} />
-        </Container>
-        <Players />
-        <Container>
-          <JugadoresRequeridos jugadoresRequeridos={playersRequired} />
-        </Container>
-      </InfoContainer>
+
+      <InfoContainer />
+
       <Container>
         <Footer>
           <a
