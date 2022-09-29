@@ -36,7 +36,7 @@ const MainWindow = styled.section`
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
-  padding: 0 48px;
+  padding: 0 3em;
 `
 
 function Root() {
