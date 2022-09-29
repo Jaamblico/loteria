@@ -1,7 +1,7 @@
 import React from 'react'
 
 // Hooks
-import { useContractData } from '../Context/ContractContext'
+import { useContractData } from 'Context/ContractContext'
 
 export function useLotteryEvents(lotteryContract) {
   const { updateContract } = useContractData()

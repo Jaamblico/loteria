@@ -1,5 +1,4 @@
 import * as React from 'react'
-
 import * as Styled from './Fat.styled'
 import { Container } from '../Container'
 import { Ether } from '../Icons/Ether'

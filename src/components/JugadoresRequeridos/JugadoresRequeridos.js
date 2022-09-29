@@ -1,5 +1,4 @@
 import * as React from 'react'
-
 import * as Styled from './JugadoresRequeridos.styled'
 import { Container } from '../Container'
 

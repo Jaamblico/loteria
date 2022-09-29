@@ -1,7 +1,6 @@
 import React from 'react'
-
-import { LOTTERY_INITIAL_STATE } from '../constants'
-import { buyLotteryTicket, getBalance, getLotteryData } from '../services'
+import { LOTTERY_INITIAL_STATE } from 'constants'
+import { buyLotteryTicket, getBalance, getLotteryData } from 'services'
 
 export const useContract = () => {
   const [data, setData] = React.useState(LOTTERY_INITIAL_STATE)

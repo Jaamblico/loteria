@@ -17,7 +17,6 @@
 // Azar y con el Arquetipo Celestial de la Lotería, que adoran los platónicos...
 
 import * as React from 'react'
-
 import * as Styled from './Quote.styled'
 import { Container } from 'Components/Container'
 
