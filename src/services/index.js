@@ -47,7 +47,7 @@ export const getLotteryData = async () => {
 
     const lastWinner = await lotteryContract.getWinner()
 
-    const address = await lotteryContract.address
+    const addressContract = await lotteryContract.address
 
     return {
       prize,
@@ -57,7 +57,7 @@ export const getLotteryData = async () => {
       players,
       playersRequired,
       lastWinner,
-      address,
+      addressContract,
     }
   } catch (e) {
     console.error(e)

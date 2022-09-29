@@ -1,16 +1,19 @@
 import * as React from 'react'
-
+import * as Styled from './Footer.styled.js'
 import { Container } from 'Components/Container'
+import { useContractData } from 'Context/ContractContext.js'
 
 export const Footer = () => {
+  const { addressContract } = useContractData()
+
   return (
     <Container>
-      <a
-        href={`https://rinkeby.etherscan.io/address/0x03E920cBEd6b209EaC9ABE24F9C9778Cf682EC1e`}
+      <Styled.Link
+        href={`https://rinkeby.etherscan.io/address/${addressContract}`}
         target="blank"
       >
-        View contract
-      </a>
+        Ver Contrato
+      </Styled.Link>
     </Container>
   )
 }
