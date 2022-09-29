@@ -1,14 +1,13 @@
 {
   "files": {
-    "main.js": "/loteria/static/js/main.85b1a42c.js",
+    "main.js": "/loteria/static/js/main.f6f6645c.js",
     "static/js/787.90a99ba7.chunk.js": "/loteria/static/js/787.90a99ba7.chunk.js",
-    "static/media/RobotoMono-Regular.ttf": "/loteria/static/media/RobotoMono-Regular.34e46962590bff8eefe5.ttf",
-    "static/media/goblet.jpeg": "/loteria/static/media/goblet.ad913637a1c177e2f8a5.jpeg",
+    "static/media/goblet.png": "/loteria/static/media/goblet.4053d09b265d73c0dbfb.png",
     "index.html": "/loteria/index.html",
-    "main.85b1a42c.js.map": "/loteria/static/js/main.85b1a42c.js.map",
+    "main.f6f6645c.js.map": "/loteria/static/js/main.f6f6645c.js.map",
     "787.90a99ba7.chunk.js.map": "/loteria/static/js/787.90a99ba7.chunk.js.map"
   },
   "entrypoints": [
-    "static/js/main.85b1a42c.js"
+    "static/js/main.f6f6645c.js"
   ]
 }
