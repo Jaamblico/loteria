@@ -5,7 +5,7 @@ import styled from 'styled-components'
 import { createGlobalStyle } from 'styled-components'
 import FontStyles from '../fontStyles'
 
-import goblet from '../assets/images/goblet.jpeg'
+import goblet from '../assets/images/goblet.png'
 
 // Context
 import { ContractProvider, useContractData } from '../Context/ContractContext'
