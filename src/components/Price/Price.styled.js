@@ -7,4 +7,5 @@ export const PriceContainer = styled.div`
 export const Price = styled.h2`
   font-size: 30px;
   text-align: center;
+  margin-right: 0.25em;
 `

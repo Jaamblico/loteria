@@ -7,10 +7,8 @@ import { Ether } from '../Icons/Ether'
 export function Fat({ fat }) {
   return (
     <Container>
-      <Styled.Fat>
-        Pozo: {fat}
-        <Ether width="8" />
-      </Styled.Fat>
+      <Styled.Fat>Pozo: {fat}</Styled.Fat>
+      <Ether width="8" />
     </Container>
   )
 }

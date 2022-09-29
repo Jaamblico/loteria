@@ -19,12 +19,15 @@
 import * as React from 'react'
 
 import * as Styled from './Quote.styled'
-import { Container } from '../Container'
+import { Container } from 'Components/Container'
 
-export function Quote({ quote }) {
+export function Quote() {
   return (
     <Container>
-      <Styled.Quote>{quote}</Styled.Quote>
+      <Styled.Quote>
+        {`'En la realidad el número de sorteos es infinito. Ninguna decisión es
+        final, todas se ramifican en otras.' J.L.B."`}
+      </Styled.Quote>
     </Container>
   )
 }

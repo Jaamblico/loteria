@@ -5,10 +5,10 @@ export const ButtonContainer = styled.div`
 `
 
 export const Button = styled.button`
-  background: goldenrod;
+  background: #e5b80b;
   color: white;
   padding: 0.5em;
   font-size: 1em;
   border: 1px solid white;
-  border-radius: 3px;
+  border-radius: 16px;
 `
