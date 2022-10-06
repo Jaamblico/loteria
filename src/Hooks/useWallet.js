@@ -14,7 +14,7 @@ export const useWallet = () => {
     // If the user have multiple accounts in their wallet we grab the first one.
     const [account] = accounts
 
-    // TODO: Before doing this i should check if the user is connected to the right network (mainnet/rinkeby)
+    // TODO: Before doing this i should check if the user is connected to the right network (mainnet/goerli)
     setAccount(account)
   }
 

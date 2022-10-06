@@ -5,7 +5,7 @@ import styled from 'styled-components'
 import { createGlobalStyle } from 'styled-components'
 
 // Context
-import { ContractProvider } from '../Context/ContractContext'
+import { ContractProvider, useContractData } from '../Context/ContractContext'
 import { useWalletContext, WalletProvider } from '../Context/WalletContext'
 
 // Utils
@@ -43,6 +43,10 @@ function Root() {
   useLotteryEvents(lotteryContract)
 
   const { account } = useWalletContext()
+
+  const { isReloading } = useContractData()
+
+  console.log(isReloading)
 
   return (
     <>

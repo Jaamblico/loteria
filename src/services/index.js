@@ -5,9 +5,9 @@ import { LOTTERY_INITIAL_STATE } from '../constants'
 
 import abi from '../utils/Lottery.json'
 
-const CONTRACT_ADDRESS = '0x03E920cBEd6b209EaC9ABE24F9C9778Cf682EC1e'
+const CONTRACT_ADDRESS = '0xb804bb1e0702209ca893F625D0a47FAbcb55908c'
 
-const CHAIN_ID = 'rinkeby'
+const CHAIN_ID = 'goerli'
 
 const defaultProvider = ethers.getDefaultProvider(CHAIN_ID)
 
