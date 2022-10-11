@@ -5,7 +5,7 @@ import { LOTTERY_INITIAL_STATE } from '../constants'
 
 import abi from '../utils/Lottery.json'
 
-const CONTRACT_ADDRESS = '0xb804bb1e0702209ca893F625D0a47FAbcb55908c'
+const CONTRACT_ADDRESS = '0x77f8311Ec2B0A4ffFBd7bE01A9b4aa8f2aC2a698'
 
 const CHAIN_ID = 'goerli'
 
@@ -37,7 +37,7 @@ export const getLotteryData = async () => {
 
     const price = await lotteryContract.getTicketPrice()
 
-    const status = await lotteryContract.getLotteryState()
+    const status = await lotteryContract.getLotteryStatus()
 
     const numOfPlayers = Number(await lotteryContract.getNumberOfPlayers())
 

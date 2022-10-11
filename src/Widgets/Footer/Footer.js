@@ -9,7 +9,7 @@ export const Footer = () => {
   return (
     <Container>
       <Styled.Link
-        href={`https://goerli.etherscan.io/address/${addressContract}`}
+        href={`https://goerli.etherscan.io/address/${addressContract}#code`}
         target="blank"
       >
         Ver Contrato
