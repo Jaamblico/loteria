@@ -5,7 +5,7 @@ import { LOTTERY_INITIAL_STATE } from '../constants'
 
 import abi from '../utils/Lottery.json'
 
-const CONTRACT_ADDRESS = '0x77f8311Ec2B0A4ffFBd7bE01A9b4aa8f2aC2a698'
+const CONTRACT_ADDRESS = '0x01434E6A301e70a7C84679272F0959b09850651f'
 
 const CHAIN_ID = 'goerli'
 

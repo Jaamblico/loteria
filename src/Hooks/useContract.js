@@ -1,5 +1,5 @@
 import React from 'react'
-import { LOTTERY_INITIAL_STATE } from 'constants'
+import { LOTTERY_INITIAL_STATE } from '../constants'
 import { buyLotteryTicket, getBalance, getLotteryData } from 'services'
 
 export const useContract = () => {

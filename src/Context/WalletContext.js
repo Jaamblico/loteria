@@ -1,10 +1,10 @@
 import * as React from 'react'
-import { useWallet } from 'Hooks/useWallet'
+import { useWalletconnect } from 'Hooks/useWalletconnect'
 
 const WalletContext = React.createContext()
 
 function WalletProvider({ children }) {
-  const { account, connectWallet } = useWallet()
+  const { account, connectWallet } = useWalletconnect()
 
   return (
     <WalletContext.Provider value={{ account, connectWallet }}>
