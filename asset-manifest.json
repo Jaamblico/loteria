@@ -1,7 +1,7 @@
 {
   "files": {
-    "main.js": "/loteria/static/js/main.c4250a63.chunk.js",
-    "main.js.map": "/loteria/static/js/main.c4250a63.chunk.js.map",
+    "main.js": "/loteria/static/js/main.bcb92e2f.chunk.js",
+    "main.js.map": "/loteria/static/js/main.bcb92e2f.chunk.js.map",
     "runtime-main.js": "/loteria/static/js/runtime-main.96c1df40.js",
     "runtime-main.js.map": "/loteria/static/js/runtime-main.96c1df40.js.map",
     "static/js/2.ed5d3422.chunk.js": "/loteria/static/js/2.ed5d3422.chunk.js",
@@ -15,6 +15,6 @@
   "entrypoints": [
     "static/js/runtime-main.96c1df40.js",
     "static/js/2.ed5d3422.chunk.js",
-    "static/js/main.c4250a63.chunk.js"
+    "static/js/main.bcb92e2f.chunk.js"
   ]
 }
