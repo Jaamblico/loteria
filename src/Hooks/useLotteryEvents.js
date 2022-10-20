@@ -4,14 +4,14 @@ import React from 'react'
 import { useContractData } from 'Context/ContractContext'
 
 export function useLotteryEvents(lotteryContract) {
-  const { updateContract } = useContractData()
+  const { refreshContractData } = useContractData()
 
   const handleEvent = React.useCallback(
     event => {
       console.log(event)
-      updateContract()
+      refreshContractData()
     },
-    [updateContract],
+    [refreshContractData],
   )
 
   React.useEffect(() => {

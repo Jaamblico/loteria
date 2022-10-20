@@ -5,7 +5,7 @@ import { buyLotteryTicket, getBalance, getLotteryData } from 'services'
 export const useContract = () => {
   const [data, setData] = React.useState(LOTTERY_INITIAL_STATE)
 
-  async function getStaticInfo() {
+  const getStaticInfo = async () => {
     const balance = await getBalance() // Promise.race[]
     const lotteryData = await getLotteryData() // Promise.race[]
 
@@ -17,7 +17,7 @@ export const useContract = () => {
     }))
   }
 
-  const updateContract = () => getStaticInfo()
+  const refreshContractData = () => getStaticInfo()
 
   const setReloading = () =>
     setData(state => ({
@@ -25,18 +25,23 @@ export const useContract = () => {
       isReloading: !state.isReloading,
     }))
 
-  React.useEffect(() => {
-    getStaticInfo()
-  }, [])
-
   const buyTicket = async () => {
-    await buyLotteryTicket()
-
     setData(state => ({
       ...state,
       isReloading: true,
     }))
+
+    await buyLotteryTicket()
+
+    setData(state => ({
+      ...state,
+      isReloading: false,
+    }))
   }
 
-  return { data, buyTicket, updateContract, setReloading }
+  React.useEffect(() => {
+    getStaticInfo()
+  }, [])
+
+  return { data, buyTicket, refreshContractData, setReloading }
 }

@@ -4,17 +4,15 @@ import { Button } from 'Components/Button'
 import { Container } from 'Components/Container'
 import { useWalletContext } from 'Context/WalletContext'
 
-export const ConnectWallet = () => {
-  const { connectWallet, account } = useWalletContext()
-
-  console.log('account', account)
+export const Connect = () => {
+  const { connect } = useWalletContext()
 
   return (
     <Container>
       <Button
         id="connect-wallet-button-container"
         name="Conectar Billetera"
-        handleClick={connectWallet}
+        handleClick={connect}
       />
     </Container>
   )

@@ -3,64 +3,52 @@ import Web3Modal from 'web3modal'
 import WalletConnect from '@walletconnect/web3-provider'
 import { providers } from 'ethers'
 import CoinbaseWalletSDK from '@coinbase/wallet-sdk'
+import { WALLET_INITIAL_STATE } from '../constants'
+import { CHAIN_ID } from '../services'
+
+const providerOptions = {
+  walletlink: {
+    package: CoinbaseWalletSDK, // Required
+    options: {
+      appName: 'Loteria de Babilonia', // Required
+      infuraId: '855d00a8b6bb42e4a2b9ca9df69d0516', // Required unless you provide a JSON RPC url; see `rpc` below
+    },
+  },
+  walletconnect: {
+    package: WalletConnect, // required
+    options: {
+      infuraId: '855d00a8b6bb42e4a2b9ca9df69d0516', // required
+    },
+  },
+}
+
+const web3Modal = new Web3Modal({
+  providerOptions,
+  cacheProvider: true, // very important
+  network: CHAIN_ID,
+  theme: 'dark',
+})
 
 export const useWalletconnect = () => {
-  const [provider, setProvider] = React.useState()
-  const [library, setLibrary] = React.useState()
-  const [account, setAccount] = React.useState()
-  const [signature, setSignature] = React.useState('')
-  const [error, setError] = React.useState('')
-  const [chainId, setChainId] = React.useState()
-  const [network, setNetwork] = React.useState()
-  const [message, setMessage] = React.useState('')
-  // const [signedMessage, setSignedMessage] = React.useState('')
-  const [verified, setVerified] = React.useState()
+  const [wallet, setWallet] = React.useState(WALLET_INITIAL_STATE)
 
-  const providerOptions = {
-    walletlink: {
-      package: CoinbaseWalletSDK, // Required
-      options: {
-        appName: 'Loteria de Babilonia', // Required
-        infuraId: '855d00a8b6bb42e4a2b9ca9df69d0516', // Required unless you provide a JSON RPC url; see `rpc` below
-      },
-    },
-    walletconnect: {
-      package: WalletConnect, // required
-      options: {
-        infuraId: '855d00a8b6bb42e4a2b9ca9df69d0516', // required
-      },
-    },
-  }
+  const { provider, error } = wallet
 
-  const web3Modal = new Web3Modal({
-    cacheProvider: true, // very important
-    network: 'goerli',
-    providerOptions,
-    theme: 'dark',
-  })
-
-  async function connectWallet() {
+  const connect = async () => {
     try {
       const provider = await web3Modal.connect()
       const library = new providers.Web3Provider(provider)
       const accounts = await library.listAccounts()
       const network = await library.getNetwork()
-      setProvider(provider)
-      setLibrary(library)
-      if (accounts) setAccount(accounts[0])
-      setChainId(network.chainId)
+      setWallet(s => ({ ...s, provider, library, network }))
+      if (accounts) setWallet(s => ({ ...s, account: accounts[0] }))
     } catch (error) {
-      setError(error)
+      setWallet(s => ({ ...s, error }))
     }
   }
 
   const refreshState = () => {
-    setAccount()
-    setChainId()
-    setNetwork('')
-    setMessage('')
-    setSignature('')
-    setVerified(undefined)
+    setWallet(WALLET_INITIAL_STATE)
   }
 
   const disconnect = async () => {
@@ -70,19 +58,20 @@ export const useWalletconnect = () => {
 
   React.useEffect(() => {
     if (web3Modal.cachedProvider) {
-      connectWallet()
+      connect()
     }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [])
 
   React.useEffect(() => {
     if (provider?.on) {
       const handleAccountsChanged = accounts => {
         console.log('accountsChanged', accounts)
-        if (accounts) setAccount(accounts[0])
+        if (accounts) setWallet(s => ({ ...s, account: accounts[0] }))
       }
 
       const handleChainChanged = _hexChainId => {
-        setChainId(_hexChainId)
+        setWallet(s => ({ ...s, _hexChainId }))
       }
 
       const handleDisconnect = () => {
@@ -102,7 +91,8 @@ export const useWalletconnect = () => {
         }
       }
     }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [provider])
 
-  return { account, connectWallet }
+  return { wallet, connect, disconnect }
 }

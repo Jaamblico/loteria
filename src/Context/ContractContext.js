@@ -5,8 +5,7 @@ import { useContract } from 'Hooks/useContract'
 const ContractContext = React.createContext({})
 
 function ContractProvider({ children }) {
-  const { data, buyTicket, updateContract, setReloading, isReloading } =
-    useContract()
+  const { data, buyTicket, refreshContractData, setReloading } = useContract()
 
   const { isLoading } = data
 
@@ -14,7 +13,7 @@ function ContractProvider({ children }) {
 
   return (
     <ContractContext.Provider
-      value={{ ...data, buyTicket, updateContract, setReloading, isReloading }}
+      value={{ ...data, buyTicket, refreshContractData, setReloading }}
     >
       {children}
     </ContractContext.Provider>

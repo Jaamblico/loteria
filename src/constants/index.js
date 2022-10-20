@@ -11,3 +11,15 @@ export const LOTTERY_INITIAL_STATE = {
   isReloading: false,
   balance: 0,
 }
+
+export const WALLET_INITIAL_STATE = {
+  provider: null,
+  library: null,
+  account: null,
+  signature: '',
+  error: '',
+  network: null,
+  message: '',
+  signedMessage: '',
+  verified: null,
+}

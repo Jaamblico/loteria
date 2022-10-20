@@ -5,7 +5,7 @@ import styled from 'styled-components'
 import { createGlobalStyle } from 'styled-components'
 
 // Context
-import { ContractProvider, useContractData } from '../Context/ContractContext'
+import { ContractProvider } from '../Context/ContractContext'
 import { useWalletContext, WalletProvider } from '../Context/WalletContext'
 
 // Utils
@@ -13,8 +13,8 @@ import { lotteryContract } from '../services'
 import { useLotteryEvents } from '../Hooks/useLotteryEvents'
 
 // Widgets
-import { BuyAction } from './BuyAction/BuyAction'
-import { ConnectWallet } from './ConnectWallet/ConnectWallet'
+import { BuyButton } from './BuyButton'
+import { Connect } from './Connect'
 import { InfoContainer } from './InfoContainer'
 import { Title } from './Title'
 import { Quote } from './Quote'
@@ -40,13 +40,11 @@ const MainWindow = styled.section`
 `
 
 function Root() {
+  const { wallet } = useWalletContext()
+
+  const { account } = wallet
+
   useLotteryEvents(lotteryContract)
-
-  const { account } = useWalletContext()
-
-  const { isReloading } = useContractData()
-
-  console.log(isReloading)
 
   return (
     <>
@@ -54,7 +52,7 @@ function Root() {
       <Title title="Lotería de Babilonia" />
       <Quote />
       <Price />
-      {account ? <BuyAction /> : <ConnectWallet />}
+      {account ? <BuyButton /> : <Connect />}
       <InfoContainer />
       <Footer />
     </>

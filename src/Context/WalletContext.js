@@ -4,10 +4,10 @@ import { useWalletconnect } from 'Hooks/useWalletconnect'
 const WalletContext = React.createContext()
 
 function WalletProvider({ children }) {
-  const { account, connectWallet } = useWalletconnect()
+  const { wallet, connect, disconnect } = useWalletconnect()
 
   return (
-    <WalletContext.Provider value={{ account, connectWallet }}>
+    <WalletContext.Provider value={{ wallet, connect, disconnect }}>
       {children}
     </WalletContext.Provider>
   )

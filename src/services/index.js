@@ -7,7 +7,7 @@ import abi from '../utils/Lottery.json'
 
 const CONTRACT_ADDRESS = '0x01434E6A301e70a7C84679272F0959b09850651f'
 
-const CHAIN_ID = 'goerli'
+export const CHAIN_ID = 'goerli'
 
 const defaultProvider = ethers.getDefaultProvider(CHAIN_ID)
 
