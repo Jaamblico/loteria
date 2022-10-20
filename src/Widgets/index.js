@@ -9,7 +9,7 @@ import { ContractProvider } from '../Context/ContractContext'
 import { useWalletContext, WalletProvider } from '../Context/WalletContext'
 
 // Utils
-import { lotteryContract } from '../services'
+import { lotteryContract } from '../services/lottery'
 import { useLotteryEvents } from '../Hooks/useLotteryEvents'
 
 // Widgets

@@ -4,7 +4,7 @@ import WalletConnect from '@walletconnect/web3-provider'
 import { providers } from 'ethers'
 import CoinbaseWalletSDK from '@coinbase/wallet-sdk'
 import { WALLET_INITIAL_STATE } from '../constants'
-import { CHAIN_ID } from '../services'
+import { CHAIN_ID } from '../services/lottery'
 
 const providerOptions = {
   walletlink: {

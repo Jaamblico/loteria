@@ -1,6 +1,6 @@
 import * as React from 'react'
 import { Spinner } from 'Components/Spinner'
-import { useContract } from 'Hooks/useContract'
+import { useContract } from 'Hooks/useLotteryContract'
 
 const ContractContext = React.createContext({})
 
