@@ -40,8 +40,12 @@ export const useWalletconnect = () => {
       const library = new providers.Web3Provider(provider)
       const accounts = await library.listAccounts()
       const network = await library.getNetwork()
+
       setWallet(s => ({ ...s, provider, library, network }))
-      if (accounts) setWallet(s => ({ ...s, account: accounts[0] }))
+
+      if (accounts) {
+        setWallet(s => ({ ...s, account: accounts[0] }))
+      }
     } catch (error) {
       setWallet(s => ({ ...s, error }))
     }
@@ -67,11 +71,15 @@ export const useWalletconnect = () => {
     if (provider?.on) {
       const handleAccountsChanged = accounts => {
         console.log('accountsChanged', accounts)
-        if (accounts) setWallet(s => ({ ...s, account: accounts[0] }))
+        if (accounts) {
+          setWallet(s => ({ ...s, account: accounts[0] }))
+        }
       }
 
+      // TODO: Since chainId is not part of state check how to update network object instead
       const handleChainChanged = _hexChainId => {
-        setWallet(s => ({ ...s, _hexChainId }))
+        console.log('chainChanged', _hexChainId)
+        // setWallet(s => ({ ...s, _hexChainId }))
       }
 
       const handleDisconnect = () => {

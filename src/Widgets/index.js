@@ -14,7 +14,7 @@ import { useLotteryEvents } from '../Hooks/useLotteryEvents'
 
 // Widgets
 import { BuyButton } from './BuyButton'
-import { Connect } from './Connect'
+import { ConnectButton } from './ConnectButton'
 import { InfoContainer } from './InfoContainer'
 import { Title } from './Title'
 import { Quote } from './Quote'
@@ -52,7 +52,7 @@ function Root() {
       <Title title="Lotería de Babilonia" />
       <Quote />
       <Price />
-      {account ? <BuyButton /> : <Connect />}
+      {account ? <BuyButton /> : <ConnectButton />}
       <InfoContainer />
       <Footer />
     </>

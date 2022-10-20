@@ -1,9 +1,16 @@
 import React from 'react'
+import { ethers } from 'ethers'
 import { LOTTERY_INITIAL_STATE } from '../constants'
-import { buyLotteryTicket, getBalance, getLotteryData } from 'services/lottery'
+import abi from '../utils/Lottery.json'
+import { CONTRACT_ADDRESS, getBalance, getLotteryData } from 'services/lottery'
+import { useWalletconnect } from './useWalletConnect'
 
 export const useContract = () => {
   const [data, setData] = React.useState(LOTTERY_INITIAL_STATE)
+
+  const { wallet } = useWalletconnect()
+
+  const { library } = wallet
 
   const getStaticInfo = async () => {
     const balance = await getBalance() // Promise.race[]
@@ -19,29 +26,54 @@ export const useContract = () => {
 
   const refreshContractData = () => getStaticInfo()
 
-  const setReloading = () =>
+  const setIsReloading = () =>
     setData(state => ({
       ...state,
       isReloading: !state.isReloading,
     }))
 
   const buyTicket = async () => {
-    setData(state => ({
-      ...state,
-      isReloading: true,
-    }))
+    if (!library) {
+      return
+    }
 
-    await buyLotteryTicket()
+    try {
+      const signer = library.getSigner()
 
-    setData(state => ({
-      ...state,
-      isReloading: false,
-    }))
+      const lotteryContractSigned = new ethers.Contract(
+        CONTRACT_ADDRESS,
+        abi.abi,
+        signer,
+      )
+
+      const price = await lotteryContractSigned.getTicketPrice()
+
+      // TODO: Add whitelist support
+      if (!price) {
+        return
+      }
+
+      const buyTicketTxn = await lotteryContractSigned.buyTicket({
+        value: price,
+        gasLimit: 300000,
+      })
+
+      console.log('Mining...', buyTicketTxn.hash)
+      setIsReloading()
+
+      await buyTicketTxn.wait()
+
+      console.log('Mined -- ', buyTicketTxn.hash)
+      setIsReloading()
+    } catch (e) {
+      setIsReloading()
+      console.error(e)
+    }
   }
 
   React.useEffect(() => {
     getStaticInfo()
   }, [])
 
-  return { data, buyTicket, refreshContractData, setReloading }
+  return { data, buyTicket, refreshContractData, setIsReloading }
 }

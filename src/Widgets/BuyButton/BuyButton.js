@@ -6,6 +6,8 @@ import { Container } from 'Components/Container'
 export const BuyButton = () => {
   const { buyTicket, isReloading } = useContractData()
 
+  console.log({ isReloading })
+
   return (
     <Container>
       <>
