@@ -1,11 +1,11 @@
 import * as React from 'react'
 import { Spinner } from 'Components/Spinner'
-import { useContract } from 'Hooks/useContract'
+import { useContract } from 'Hooks/useLotteryContract'
 
 const ContractContext = React.createContext({})
 
 function ContractProvider({ children }) {
-  const { data, buyTicket, refreshContractData, setReloading } = useContract()
+  const { data, buyTicket, refreshContractData, setIsReloading } = useContract()
 
   const { isLoading } = data
 
@@ -13,7 +13,7 @@ function ContractProvider({ children }) {
 
   return (
     <ContractContext.Provider
-      value={{ ...data, buyTicket, refreshContractData, setReloading }}
+      value={{ ...data, buyTicket, refreshContractData, setIsReloading }}
     >
       {children}
     </ContractContext.Provider>

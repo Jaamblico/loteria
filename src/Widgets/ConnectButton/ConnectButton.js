@@ -4,7 +4,7 @@ import { Button } from 'Components/Button'
 import { Container } from 'Components/Container'
 import { useWalletContext } from 'Context/WalletContext'
 
-export const Connect = () => {
+export const ConnectButton = () => {
   const { connect } = useWalletContext()
 
   return (

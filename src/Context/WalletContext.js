@@ -1,5 +1,5 @@
 import * as React from 'react'
-import { useWalletconnect } from 'Hooks/useWalletconnect'
+import { useWalletconnect } from 'Hooks/useWalletConnect'
 
 const WalletContext = React.createContext()
 

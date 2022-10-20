@@ -5,7 +5,7 @@ import { LOTTERY_INITIAL_STATE } from '../constants'
 
 import abi from '../utils/Lottery.json'
 
-const CONTRACT_ADDRESS = '0x01434E6A301e70a7C84679272F0959b09850651f'
+export const CONTRACT_ADDRESS = '0x01434E6A301e70a7C84679272F0959b09850651f'
 
 export const CHAIN_ID = 'goerli'
 
@@ -62,32 +62,5 @@ export const getLotteryData = async () => {
   } catch (e) {
     console.error(e)
     return LOTTERY_INITIAL_STATE
-  }
-}
-
-export const buyLotteryTicket = async () => {
-  try {
-    const provider = new ethers.providers.Web3Provider(window.ethereum)
-
-    const signer = provider.getSigner()
-
-    const lotteryContractSigned = new ethers.Contract(
-      CONTRACT_ADDRESS,
-      abi.abi,
-      signer,
-    )
-
-    const ticketPrice = await lotteryContract.getTicketPrice()
-
-    const buyTicketTxn = await lotteryContractSigned.buyTicket({
-      value: ticketPrice,
-      gasLimit: 300000,
-    })
-    console.log('Mining...', buyTicketTxn.hash)
-
-    await buyTicketTxn.wait()
-    console.log('Mined -- ', buyTicketTxn.hash)
-  } catch (e) {
-    console.error(e)
   }
 }
