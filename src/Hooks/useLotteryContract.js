@@ -2,7 +2,13 @@ import React from 'react'
 import { ethers } from 'ethers'
 import { LOTTERY_INITIAL_STATE } from '../constants'
 import abi from '../utils/Lottery.json'
-import { CONTRACT_ADDRESS, getBalance, getLotteryData } from 'services/lottery'
+import {
+  CHAIN_ID,
+  CHAIN_NAME,
+  CONTRACT_ADDRESS,
+  getBalance,
+  getLotteryData,
+} from 'services/lottery'
 import { useWalletconnect } from './useWalletConnect'
 
 export const useContract = () => {
@@ -10,7 +16,7 @@ export const useContract = () => {
 
   const { wallet } = useWalletconnect()
 
-  const { library } = wallet
+  const { library, network, setWallet } = wallet
 
   const getStaticInfo = async () => {
     const balance = await getBalance() // Promise.race[]
@@ -24,7 +30,9 @@ export const useContract = () => {
     }))
   }
 
-  const refreshContractData = () => getStaticInfo()
+  const refreshContractData = async () => {
+    await getStaticInfo()
+  }
 
   const setIsReloading = () =>
     setData(state => ({
@@ -32,7 +40,23 @@ export const useContract = () => {
       isReloading: !state.isReloading,
     }))
 
+  const setIsProcessingTx = () =>
+    setData(state => ({
+      ...state,
+      isProcessingTx: !state.isProcessingTx,
+    }))
+
   const buyTicket = async () => {
+    if (network.chainId !== CHAIN_ID) {
+      setWallet(s => ({
+        ...s,
+        error: {
+          message: `Incorrect chain selected. Please change network to: ${CHAIN_NAME}`,
+        },
+      }))
+      return
+    }
+
     if (!library) {
       return
     }
@@ -59,14 +83,16 @@ export const useContract = () => {
       })
 
       console.log('Mining...', buyTicketTxn.hash)
-      setIsReloading()
+      setIsProcessingTx()
 
       await buyTicketTxn.wait()
 
       console.log('Mined -- ', buyTicketTxn.hash)
-      setIsReloading()
+      setIsProcessingTx()
     } catch (e) {
-      setIsReloading()
+      if (data.isProcessingTx) {
+        setIsProcessingTx()
+      }
       console.error(e)
     }
   }
@@ -75,5 +101,11 @@ export const useContract = () => {
     getStaticInfo()
   }, [])
 
-  return { data, buyTicket, refreshContractData, setIsReloading }
+  return {
+    data,
+    buyTicket,
+    refreshContractData,
+    setIsReloading,
+    setIsProcessingTx,
+  }
 }

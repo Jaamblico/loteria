@@ -10,6 +10,7 @@ export const LOTTERY_INITIAL_STATE = {
   address: '',
   isReloading: false,
   balance: 0,
+  isProcessingTx: false,
 }
 
 export const WALLET_INITIAL_STATE = {

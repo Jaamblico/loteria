@@ -5,7 +5,10 @@ import { Container } from 'Components/Container'
 import { useWalletContext } from 'Context/WalletContext'
 
 export const ConnectButton = () => {
-  const { connect } = useWalletContext()
+  const { connect, wallet } = useWalletContext()
+  const { network } = wallet
+
+  console.log('Red seleccionada: ', network.chainId)
 
   return (
     <Container>

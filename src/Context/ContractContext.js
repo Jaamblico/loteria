@@ -5,7 +5,13 @@ import { useContract } from 'Hooks/useLotteryContract'
 const ContractContext = React.createContext({})
 
 function ContractProvider({ children }) {
-  const { data, buyTicket, refreshContractData, setIsReloading } = useContract()
+  const {
+    data,
+    buyTicket,
+    refreshContractData,
+    setIsReloading,
+    setIsProcessingTx,
+  } = useContract()
 
   const { isLoading } = data
 
@@ -13,7 +19,13 @@ function ContractProvider({ children }) {
 
   return (
     <ContractContext.Provider
-      value={{ ...data, buyTicket, refreshContractData, setIsReloading }}
+      value={{
+        ...data,
+        buyTicket,
+        refreshContractData,
+        setIsReloading,
+        setIsProcessingTx,
+      }}
     >
       {children}
     </ContractContext.Provider>
