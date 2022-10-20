@@ -4,19 +4,25 @@ import React from 'react'
 import { useContractData } from 'Context/ContractContext'
 
 export function useLotteryEvents(lotteryContract) {
-  const { refreshContractData } = useContractData()
+  const { refreshContractData, setIsReloading } = useContractData()
 
   const handleEvent = React.useCallback(
-    event => {
-      console.log(event)
-      refreshContractData()
+    async event => {
+      console.log('REFRESHING')
+      setIsReloading()
+
+      await refreshContractData()
+
+      console.log('FINISH REFRESHING')
+      setIsReloading()
     },
-    [refreshContractData],
+    // TODO: Fix this to only execute once per event
+    [refreshContractData, setIsReloading],
   )
 
   React.useEffect(() => {
     if (lotteryContract) {
-      lotteryContract.on('EnterLottery', (_, e) => handleEvent(e))
+      lotteryContract.on('EnterLottery', e => handleEvent(e))
     }
 
     return () => lotteryContract.off('EnterLottery')
