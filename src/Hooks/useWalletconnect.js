@@ -4,7 +4,7 @@ import WalletConnect from '@walletconnect/web3-provider'
 import { providers } from 'ethers'
 import CoinbaseWalletSDK from '@coinbase/wallet-sdk'
 import { WALLET_INITIAL_STATE } from '../constants'
-import { CHAIN_ID } from '../services/lottery'
+import { CHAIN_NAME } from '../services/lottery'
 
 const providerOptions = {
   walletlink: {
@@ -25,7 +25,7 @@ const providerOptions = {
 const web3Modal = new Web3Modal({
   providerOptions,
   cacheProvider: true, // very important
-  network: CHAIN_ID,
+  network: CHAIN_NAME,
   theme: 'dark',
 })
 
@@ -102,5 +102,5 @@ export const useWalletconnect = () => {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [provider])
 
-  return { wallet, connect, disconnect }
+  return { wallet, setWallet, connect, disconnect }
 }

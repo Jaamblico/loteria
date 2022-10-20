@@ -2,6 +2,7 @@ import * as React from 'react'
 import * as Styled from './Footer.styled.js'
 import { Container } from 'Components/Container'
 import { useContractData } from 'Context/ContractContext.js'
+import { CHAIN_NAME } from 'services/lottery.js'
 
 export const Footer = () => {
   const { addressContract } = useContractData()
@@ -9,7 +10,7 @@ export const Footer = () => {
   return (
     <Container>
       <Styled.Link
-        href={`https://goerli.etherscan.io/address/${addressContract}#code`}
+        href={`https://${CHAIN_NAME}.etherscan.io/address/${addressContract}#code`}
         target="blank"
       >
         Ver Contrato
