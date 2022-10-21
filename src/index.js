@@ -1,8 +1,8 @@
 import React from 'react'
-import ReactDOM from 'react-dom/client'
+import ReactDOM from 'react-dom'
 import * as Sentry from '@sentry/react'
 import { BrowserTracing } from '@sentry/tracing'
-import Main from './Widgets'
+import Main from '@/widgets'
 import reportWebVitals from './reportWebVitals'
 
 Sentry.init({
@@ -15,8 +15,7 @@ Sentry.init({
   tracesSampleRate: 1.0,
 })
 
-const root = ReactDOM.createRoot(document.getElementById('root'))
-root.render(<Main />)
+ReactDOM.render(<Main />, document.getElementById('root'))
 
 // TODO: Agregar errorBoundary
 

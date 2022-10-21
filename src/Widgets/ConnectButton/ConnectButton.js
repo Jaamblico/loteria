@@ -1,8 +1,8 @@
 import * as React from 'react'
 
-import { Button } from 'Components/Button'
-import { Container } from 'Components/Container'
-import { useWalletContext } from 'Context/WalletContext'
+import { Button } from '@/components/Button'
+import { Container } from '@/components/Container'
+import { useWalletContext } from '@/context/WalletContext'
 
 export const ConnectButton = () => {
   const { connect, wallet } = useWalletContext()

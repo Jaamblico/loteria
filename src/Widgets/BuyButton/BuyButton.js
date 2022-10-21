@@ -1,9 +1,9 @@
 import * as React from 'react'
-import { useContractData } from 'Context/ContractContext'
-import { Button } from 'Components/Button'
-import { Container } from 'Components/Container'
-import { useWalletContext } from 'Context/WalletContext'
-import { CHAIN_ID, CHAIN_NAME } from 'services/lottery'
+import { useContractData } from '@/context/ContractContext'
+import { useWalletContext } from '@/context/WalletContext'
+import { Button } from '@/components/Button'
+import { Container } from '@/components/Container'
+import { CHAIN_ID, CHAIN_NAME } from '@/services/lottery'
 
 export const BuyButton = () => {
   const { buyTicket, isProcessingTx } = useContractData()

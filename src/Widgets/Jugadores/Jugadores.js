@@ -1,7 +1,7 @@
 import * as React from 'react'
 import * as Styled from './Jugadores.styled'
-import { useContractData } from 'Context/ContractContext'
-import { Container } from 'Components/Container'
+import { useContractData } from '@/context/ContractContext'
+import { Container } from '@/components/Container'
 
 export const Jugadores = () => {
   const { players } = useContractData()

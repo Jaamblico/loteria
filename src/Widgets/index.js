@@ -5,12 +5,14 @@ import styled from 'styled-components'
 import { createGlobalStyle } from 'styled-components'
 
 // Context
-import { ContractProvider } from '../Context/ContractContext'
-import { useWalletContext, WalletProvider } from '../Context/WalletContext'
+import { ContractProvider } from '@/context/ContractContext'
+import { useWalletContext, WalletProvider } from '@/context/WalletContext'
 
-// Utils
-import { lotteryContract } from '../services/lottery'
-import { useLotteryEvents } from '../Hooks/useLotteryEvents'
+// Services
+import { lotteryContract } from '@/services/lottery'
+
+// Hooks
+import { useLotteryEvents } from '@/hooks/useLotteryEvents'
 
 // Widgets
 import { BuyButton } from './BuyButton'
@@ -18,7 +20,7 @@ import { ConnectButton } from './ConnectButton'
 import { InfoContainer } from './InfoContainer'
 import { Title } from './Title'
 import { Quote } from './Quote'
-import { Price } from '../Components/Price'
+import { Price } from '@/components/Price'
 import { Footer } from './Footer'
 import { Goblet } from './Goblet'
 

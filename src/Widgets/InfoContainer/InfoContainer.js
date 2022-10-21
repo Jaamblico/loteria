@@ -1,13 +1,13 @@
 import * as React from 'react'
 import * as Styled from './InfoContainer.styled'
-import { formatEther } from 'utils'
-import { Container } from 'Components/Container'
-import { Estado } from 'Components/Estado'
-import { Fat } from 'Components/Fat'
-import { CantidadJugadores } from 'Components/CantidadJugadores'
-import { JugadoresRequeridos } from 'Components/JugadoresRequeridos'
-import { useContractData } from 'Context/ContractContext'
-import { Jugadores } from 'Widgets/Jugadores'
+import { formatEther } from '@/utils'
+import { Container } from '@/components/Container'
+import { Estado } from '@/components/Estado'
+import { Fat } from '@/components/Fat'
+import { CantidadJugadores } from '@/components/CantidadJugadores'
+import { JugadoresRequeridos } from '@/components/JugadoresRequeridos'
+import { useContractData } from '@/context/ContractContext'
+import { Jugadores } from '@/widgets/Jugadores'
 
 export function InfoContainer() {
   const { prize, status, numOfPlayers, playersRequired } = useContractData()
