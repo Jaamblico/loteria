@@ -8,7 +8,7 @@ export const ConnectButton = () => {
   const { connect, wallet } = useWalletContext()
   const { network } = wallet
 
-  console.log('Red seleccionada: ', network.chainId)
+  console.log('Red seleccionada: ', network?.chainId)
 
   return (
     <Container>
