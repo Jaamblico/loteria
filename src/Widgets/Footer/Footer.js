@@ -1,8 +1,8 @@
 import * as React from 'react'
 import * as Styled from './Footer.styled.js'
-import { Container } from 'Components/Container'
-import { useContractData } from 'Context/ContractContext.js'
-import { CHAIN_NAME } from 'services/lottery.js'
+import { Container } from '@/components/Container'
+import { useContractData } from '@/context/ContractContext.js'
+import { CHAIN_NAME } from '@/services/lottery.js'
 
 export const Footer = () => {
   const { addressContract } = useContractData()

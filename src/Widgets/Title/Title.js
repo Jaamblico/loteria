@@ -1,6 +1,6 @@
 import * as React from 'react'
 import * as Styled from './Title.styled'
-import { Container } from 'Components/Container'
+import { Container } from '@/components/Container'
 
 export function Title({ title }) {
   return (

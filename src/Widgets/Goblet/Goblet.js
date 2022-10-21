@@ -1,7 +1,7 @@
 import * as React from 'react'
 
-import { Container } from 'Components/Container'
-import goblet from 'assets/images/goblet.png'
+import { Container } from '@/components/Container'
+import goblet from '@/assets/images/goblet.png'
 
 export const Goblet = () => {
   return (
