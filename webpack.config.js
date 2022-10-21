@@ -1,5 +1,6 @@
 const path = require('path')
 const HtmlWebpackPlugin = require('html-webpack-plugin')
+const SentryWebpackPlugin = require('@sentry/webpack-plugin')
 
 module.exports = {
   entry: './src/index.js',
@@ -8,12 +9,21 @@ module.exports = {
       template: path.resolve(__dirname, 'public/index.html'),
       inject: true,
     }),
+    new SentryWebpackPlugin({
+      authToken: process.env.SENTRY_AUTH_TOKEN,
+      org: 'solwin',
+      project: 'loteria-de-babilonia',
+      include: 'build',
+      configFile: 'sentry.properties',
+      release: process.env.SENTRY_RELEASE,
+    }),
   ],
   output: {
     path: path.resolve(__dirname, 'build'),
     filename: 'assets/js/[name].[contenthash:8].js',
     publicPath: '/loteria/',
   },
+  devtool: 'source-map',
   module: {
     rules: [
       {
