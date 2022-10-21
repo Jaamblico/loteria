@@ -2,15 +2,17 @@ const path = require('path')
 const HtmlWebpackPlugin = require('html-webpack-plugin')
 
 module.exports = {
+  entry: './src/index.js',
   plugins: [
     new HtmlWebpackPlugin({
-      template: './public/index.html', // base html
+      template: path.resolve(__dirname, 'public/index.html'),
+      inject: true,
     }),
   ],
-  entry: './src/index.js',
   output: {
-    path: path.resolve(__dirname, 'dist'), // output folder
-    publicPath: '/',
+    path: path.resolve(__dirname, 'build'),
+    filename: 'assets/js/[name].[contenthash:8].js',
+    publicPath: '/loteria/',
   },
   module: {
     rules: [
