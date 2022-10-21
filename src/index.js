@@ -1,8 +1,19 @@
 import React from 'react'
 import ReactDOM from 'react-dom/client'
-
+import * as Sentry from '@sentry/react'
+import { BrowserTracing } from '@sentry/tracing'
 import Main from './Widgets'
 import reportWebVitals from './reportWebVitals'
+
+Sentry.init({
+  dsn: 'https://304078c336ef48b6815cbc02b619c487@o4504019113672704.ingest.sentry.io/4504019114852352',
+  integrations: [new BrowserTracing()],
+
+  // Set tracesSampleRate to 1.0 to capture 100%
+  // of transactions for performance monitoring.
+  // We recommend adjusting this value in production
+  tracesSampleRate: 1.0,
+})
 
 const root = ReactDOM.createRoot(document.getElementById('root'))
 root.render(<Main />)
