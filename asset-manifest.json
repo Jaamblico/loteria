@@ -1,20 +1,20 @@
 {
   "files": {
-    "main.js": "/loteria/static/js/main.e637db5b.chunk.js",
-    "main.js.map": "/loteria/static/js/main.e637db5b.chunk.js.map",
-    "runtime-main.js": "/loteria/static/js/runtime-main.81d03a7a.js",
-    "runtime-main.js.map": "/loteria/static/js/runtime-main.81d03a7a.js.map",
-    "static/js/2.6fba1750.chunk.js": "/loteria/static/js/2.6fba1750.chunk.js",
-    "static/js/2.6fba1750.chunk.js.map": "/loteria/static/js/2.6fba1750.chunk.js.map",
-    "static/js/3.8a5685ce.chunk.js": "/loteria/static/js/3.8a5685ce.chunk.js",
-    "static/js/3.8a5685ce.chunk.js.map": "/loteria/static/js/3.8a5685ce.chunk.js.map",
+    "main.js": "/loteria/static/js/main.d4be4407.chunk.js",
+    "main.js.map": "/loteria/static/js/main.d4be4407.chunk.js.map",
+    "runtime-main.js": "/loteria/static/js/runtime-main.5ad8c57a.js",
+    "runtime-main.js.map": "/loteria/static/js/runtime-main.5ad8c57a.js.map",
+    "static/js/2.ea3ab953.chunk.js": "/loteria/static/js/2.ea3ab953.chunk.js",
+    "static/js/2.ea3ab953.chunk.js.map": "/loteria/static/js/2.ea3ab953.chunk.js.map",
+    "static/js/3.27d92660.chunk.js": "/loteria/static/js/3.27d92660.chunk.js",
+    "static/js/3.27d92660.chunk.js.map": "/loteria/static/js/3.27d92660.chunk.js.map",
     "index.html": "/loteria/index.html",
-    "static/js/2.6fba1750.chunk.js.LICENSE.txt": "/loteria/static/js/2.6fba1750.chunk.js.LICENSE.txt",
+    "static/js/2.ea3ab953.chunk.js.LICENSE.txt": "/loteria/static/js/2.ea3ab953.chunk.js.LICENSE.txt",
     "static/media/goblet.4053d09b.png": "/loteria/static/media/goblet.4053d09b.png"
   },
   "entrypoints": [
-    "static/js/runtime-main.81d03a7a.js",
-    "static/js/2.6fba1750.chunk.js",
-    "static/js/main.e637db5b.chunk.js"
+    "static/js/runtime-main.5ad8c57a.js",
+    "static/js/2.ea3ab953.chunk.js",
+    "static/js/main.d4be4407.chunk.js"
   ]
 }
