@@ -4,10 +4,14 @@ const SentryWebpackPlugin = require('@sentry/webpack-plugin')
 
 module.exports = {
   entry: './src/index.js',
+  output: {
+    path: path.resolve(__dirname, './build'),
+    filename: '[name].bundle.[contentHash:8].js',
+    publicPath: '/loteria/',
+  },
   plugins: [
     new HtmlWebpackPlugin({
       template: path.resolve(__dirname, 'public/index.html'),
-      inject: true,
     }),
     new SentryWebpackPlugin({
       authToken: process.env.SENTRY_AUTH_TOKEN,
@@ -18,12 +22,6 @@ module.exports = {
       release: process.env.SENTRY_RELEASE,
     }),
   ],
-  output: {
-    path: path.resolve(__dirname, 'build'),
-    filename: 'assets/js/[name].[contenthash:8].js',
-    publicPath: '/loteria/',
-  },
-  devtool: 'source-map',
   module: {
     rules: [
       {
@@ -37,14 +35,7 @@ module.exports = {
         },
       },
       {
-        test: /\.css$/,
-        use: [
-          'style-loader',
-          'css-loader', // for styles
-        ],
-      },
-      {
-        test: /\.(png|jpe?g|gif)$/i,
+        test: /.(jpg|jpeg|png|gif|mp3|svg)$/,
         use: [
           {
             loader: 'file-loader',
@@ -53,6 +44,12 @@ module.exports = {
       },
     ],
   },
+  devServer: {
+    contentBase: path.join(__dirname, 'public'),
+    compress: true,
+    port: 9000,
+  },
+  devtool: 'source-map',
   resolve: {
     alias: {
       '@/utils': path.resolve(__dirname, 'src/utils'),
