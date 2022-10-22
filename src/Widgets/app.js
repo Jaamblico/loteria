@@ -33,7 +33,7 @@ const GlobalStyle = createGlobalStyle`
   }
 `
 
-const MainWindow = styled.section`
+const MainContainer = styled.section`
   height: 100vh;
   display: flex;
   flex-wrap: wrap;
@@ -62,19 +62,19 @@ function Root() {
 }
 
 // TODO: Create HOC for WalletProvider and ContractProvider maybe?
-function Main() {
+function App() {
   return (
     <>
       <GlobalStyle />
       <WalletProvider>
         <ContractProvider>
-          <MainWindow>
+          <MainContainer>
             <Root />
-          </MainWindow>
+          </MainContainer>
         </ContractProvider>
       </WalletProvider>
     </>
   )
 }
 
-export default Main
+export default App

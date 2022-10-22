@@ -76,7 +76,7 @@ export const useWalletconnect = () => {
         }
       }
 
-      // TODO: Since chainId is not part of state check how to update network object instead
+      // TODO: Since chainId is not part of state check I better update network object instead
       const handleChainChanged = _hexChainId => {
         console.log('chainChanged', _hexChainId)
         // setWallet(s => ({ ...s, _hexChainId }))
