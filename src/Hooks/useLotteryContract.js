@@ -1,14 +1,13 @@
 import React from 'react'
 import { ethers } from 'ethers'
-import { LOTTERY_INITIAL_STATE } from '@/constants'
-import abi from '@/utils/Lottery.json'
 import {
+  LOTTERY_INITIAL_STATE,
   CHAIN_ID,
   CHAIN_NAME,
   CONTRACT_ADDRESS,
-  getBalance,
-  getLotteryData,
-} from '@/services/lottery'
+} from '@/constants'
+import abi from '@/utils/Lottery.json'
+import { getBalance, getLotteryData } from '@/services/lottery'
 import { useWalletconnect } from '@/hooks/useWalletConnect'
 
 export const useContract = () => {

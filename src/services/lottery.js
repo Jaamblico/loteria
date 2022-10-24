@@ -1,14 +1,11 @@
 import { ethers } from 'ethers'
-
-import { formatEther } from '../utils'
-import { LOTTERY_INITIAL_STATE } from '../constants'
-
-import abi from '../utils/Lottery.json'
-
-export const CONTRACT_ADDRESS = '0x01434E6A301e70a7C84679272F0959b09850651f'
-
-export const CHAIN_NAME = 'goerli'
-export const CHAIN_ID = 5
+import { formatEther } from '@/utils'
+import {
+  CONTRACT_ADDRESS,
+  LOTTERY_INITIAL_STATE,
+  CHAIN_NAME,
+} from '@/constants'
+import abi from '@/utils/Lottery.json' // abstract binary interface
 
 const defaultProvider = ethers.getDefaultProvider(CHAIN_NAME)
 

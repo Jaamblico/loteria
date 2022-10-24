@@ -1,9 +1,8 @@
 import React from 'react'
-
-// Hooks
+import { lotteryContract } from '@/services/lottery'
 import { useContractData } from '@/context/ContractContext'
 
-export function useLotteryEvents(lotteryContract) {
+export function useLotteryEvents() {
   const { refreshContractData, setIsReloading } = useContractData()
 
   const handleEvent = React.useCallback(
@@ -26,5 +25,5 @@ export function useLotteryEvents(lotteryContract) {
     }
 
     return () => lotteryContract.off('EnterLottery')
-  }, [handleEvent, lotteryContract])
+  }, [handleEvent])
 }

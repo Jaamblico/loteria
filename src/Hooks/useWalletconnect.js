@@ -3,8 +3,7 @@ import Web3Modal from 'web3modal'
 import WalletConnect from '@walletconnect/web3-provider'
 import { providers } from 'ethers'
 import CoinbaseWalletSDK from '@coinbase/wallet-sdk'
-import { WALLET_INITIAL_STATE } from '@/constants'
-import { CHAIN_NAME } from '@/services/lottery'
+import { WALLET_INITIAL_STATE, CHAIN_NAME } from '@/constants'
 
 const providerOptions = {
   walletlink: {
