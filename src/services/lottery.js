@@ -31,29 +31,42 @@ export const getBalance = async () => {
 
 export const getLotteryData = async () => {
   try {
-    const prize = await lotteryContract.getPrize()
+    const getPrize = lotteryContract.getPrize()
+    const getPrice = lotteryContract.getTicketPrice()
+    const getStatus = lotteryContract.getLotteryStatus()
+    const getNumOfPlayers = lotteryContract.getNumberOfPlayers()
+    const getPlayers = lotteryContract.getPlayers()
+    const getPlayersRequired = lotteryContract.getPlayersRequired()
+    const getLastWinner = lotteryContract.getWinner()
+    const getAddressContract = lotteryContract.address
 
-    const price = await lotteryContract.getTicketPrice()
-
-    const status = await lotteryContract.getLotteryStatus()
-
-    const numOfPlayers = Number(await lotteryContract.getNumberOfPlayers())
-
-    const players = await lotteryContract.getPlayers()
-
-    const playersRequired = Number(await lotteryContract.getPlayersRequired())
-
-    const lastWinner = await lotteryContract.getWinner()
-
-    const addressContract = await lotteryContract.address
-
-    return {
+    const [
       prize,
       price,
       status,
       numOfPlayers,
       players,
       playersRequired,
+      lastWinner,
+      addressContract,
+    ] = await Promise.all([
+      getPrize,
+      getPrice,
+      getStatus,
+      getNumOfPlayers,
+      getPlayers,
+      getPlayersRequired,
+      getLastWinner,
+      getAddressContract,
+    ])
+
+    return {
+      prize,
+      price,
+      status,
+      numOfPlayers: Number(numOfPlayers),
+      players,
+      playersRequired: Number(playersRequired),
       lastWinner,
       addressContract,
     }
