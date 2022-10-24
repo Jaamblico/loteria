@@ -74,9 +74,6 @@ const client = argv => {
         '@': path.resolve(__dirname, 'src'),
       },
     },
-    node: {
-      child_process: 'empty',
-    },
   }
 
   return config
