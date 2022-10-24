@@ -30,6 +30,7 @@ function App() {
 
     return customHub
   }, [])
+
   return (
     <>
       <GlobalStyle />
