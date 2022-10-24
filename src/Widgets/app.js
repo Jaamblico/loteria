@@ -30,7 +30,6 @@ function App() {
 
     return customHub
   }, [])
-  // TOdo. delete me
   return (
     <>
       <GlobalStyle />
