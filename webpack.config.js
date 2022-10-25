@@ -15,16 +15,15 @@ const definitions = {
 }
 
 const client = argv => {
+  const isDev = argv.mode === 'development'
+
   const config = {
     name: 'client',
     entry: './src/index.js',
     output: {
       path: path.resolve(__dirname, './build'),
       filename: '[name].bundle.[contentHash:8].js',
-      publicPath:
-        argv.mode === 'development'
-          ? developmentPublicPath
-          : productionPublicPath,
+      publicPath: isDev ? developmentPublicPath : productionPublicPath,
     },
     plugins: [
       new webpack.DefinePlugin(definitions),
@@ -67,6 +66,8 @@ const client = argv => {
       contentBase: path.resolve(__dirname, 'public'),
       compress: true,
       port: 9000,
+      open: true,
+      openPage: 'loteria/',
     },
     devtool: 'source-map',
     resolve: {
