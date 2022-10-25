@@ -10,8 +10,8 @@ export const BuyButton = () => {
   const { wallet } = useWalletContext()
   const { network } = wallet
 
-  if (network.chainId !== CHAIN_ID) {
-    console.log('ChainId selected', network.chainId)
+  if (network?.chainId !== CHAIN_ID) {
+    console.log('ChainId selected', network?.chainId)
     return <>Por favor, cambia tu red a ${CHAIN_NAME} para poder continuar.</>
   }
 
