@@ -4,6 +4,7 @@ import { useWalletContext } from '@/context/WalletContext'
 import { Button } from '@/components/Button'
 import { Container } from '@/components/Container'
 import { CHAIN_ID, CHAIN_NAME } from '@/constants'
+import toast from 'react-hot-toast'
 
 export const BuyButton = () => {
   const { buyTicket, isProcessingTx } = useContractData()
@@ -12,22 +13,28 @@ export const BuyButton = () => {
 
   if (network.chainId !== CHAIN_ID) {
     console.log('ChainId selected', network.chainId)
-    return <>Por favor, cambia tu red a ${CHAIN_NAME} para poder continuar.</>
+    // toast(
+    //   'Por favor, cambia tu red a' + network.chain + 'para poder continuar.',
+    // )
+    return <>Por favor, cambia tu red a {CHAIN_NAME} para poder continuar.</>
   }
+
+  React.useEffect(() => {
+    if (isProcessingTx) {
+      toast.loading('Comprando ticket', { toastId: '1' })
+    } else {
+      toast.remove('1')
+    }
+  }, [isProcessingTx])
 
   return (
     <Container>
-      <>
-        {isProcessingTx ? (
-          'Comprando ticket...'
-        ) : (
-          <Button
-            id="button-container"
-            name="Comprar Ticket"
-            handleClick={buyTicket}
-          />
-        )}
-      </>
+      <Button
+        id="button-container"
+        name="Comprar Ticket"
+        handleClick={buyTicket}
+        disabled={isProcessingTx}
+      />
     </Container>
   )
 }
