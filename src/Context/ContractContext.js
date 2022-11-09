@@ -6,21 +6,21 @@ const ContractContext = React.createContext({})
 
 function ContractProvider({ children }) {
   const {
-    data,
+    lotteryData,
     buyTicket,
     refreshContractData,
     setIsReloading,
     setIsProcessingTx,
   } = useContract()
 
-  const { isLoading } = data
+  const { isLoading } = lotteryData
 
   if (isLoading) return <Spinner />
 
   return (
     <ContractContext.Provider
       value={{
-        ...data,
+        ...lotteryData,
         buyTicket,
         refreshContractData,
         setIsReloading,

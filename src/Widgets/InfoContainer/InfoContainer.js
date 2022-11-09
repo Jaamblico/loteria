@@ -16,7 +16,7 @@ export function InfoContainer() {
     <Container>
       <Styled.InfoContainer>
         <Fat fat={formatEther(prize)} />
-        <Estado estado={status ? 'Cerrado' : 'Abierto'} />
+        <Estado estado={status} />
         <CantidadJugadores jugadores={numOfPlayers} />
         <Jugadores />
         <JugadoresRequeridos jugadoresRequeridos={playersRequired} />
