@@ -10,6 +10,7 @@ import { Quote } from '@/widgets/Quote'
 import { Price } from '@/components/Price'
 import { Footer } from '@/widgets/Footer'
 import { Goblet } from '@/widgets/Goblet'
+import { Toaster } from 'react-hot-toast'
 
 const MainContainer = styled.section`
   height: 100vh;
@@ -33,6 +34,7 @@ export function Main() {
       <Quote />
       <Price />
       {account ? <BuyButton /> : <ConnectButton />}
+      <Toaster position="bottom-center" duration="2000" />
       <InfoContainer />
       <Footer />
     </MainContainer>
