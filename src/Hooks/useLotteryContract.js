@@ -99,7 +99,6 @@ export const useContract = () => {
       }
       console.error(e)
       toast.error('No se pudo procesar la transacción')
-      otherErrorNote()
     }
   }
 
