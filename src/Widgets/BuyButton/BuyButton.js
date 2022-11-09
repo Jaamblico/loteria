@@ -13,9 +13,9 @@ export const BuyButton = () => {
 
   if (network.chainId !== CHAIN_ID) {
     console.log('ChainId selected', network.chainId)
-    // toast(
-    //   'Por favor, cambia tu red a' + network.chain + 'para poder continuar.',
-    // )
+      toast(
+        'Por favor, cambia tu red a' + network.chain + 'para poder continuar.',
+      )
     return <>Por favor, cambia tu red a {CHAIN_NAME} para poder continuar.</>
   }
 
