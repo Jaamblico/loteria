@@ -17,7 +17,6 @@ export const BuyButton = () => {
         'Por favor, cambia tu red a' + network.chain + 'para poder continuar.',
       )
     return <>Por favor, cambia tu red a {CHAIN_NAME} para poder continuar.</>
-  }
 
   React.useEffect(() => {
     if (isProcessingTx) {
