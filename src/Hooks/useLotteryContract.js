@@ -7,6 +7,8 @@ import {
   CONTRACT_ADDRESS,
 } from '@/constants'
 import abi from '@/utils/Lottery.json'
+import toast from 'react-hot-toast'
+import { getBalance, getLotteryData } from '@/services/lottery'
 import { useWalletconnect } from '@/hooks/useWalletConnect'
 import { useLotteryGraphql } from './useLotteryStateGraphql'
 
@@ -57,6 +59,9 @@ export const useContract = () => {
           message: `Incorrect chain selected. Please change network to: ${CHAIN_NAME}`,
         },
       }))
+      toast.error(
+        `Incorrect chain selected. Please change network to: ${CHAIN_NAME}`,
+      )
       return
     }
 
@@ -91,12 +96,14 @@ export const useContract = () => {
       await buyTicketTxn.wait()
 
       console.log('Mined -- ', buyTicketTxn.hash)
+      toast.success('Gracias por su compra!')
       setIsProcessingTx()
     } catch (e) {
       if (data.isProcessingTx) {
         setIsProcessingTx()
       }
       console.error(e)
+      toast.error('No se pudo procesar la transacción')
     }
   }
 
