@@ -11,20 +11,23 @@ export const BuyButton = () => {
   const { wallet } = useWalletContext()
   const { network } = wallet
 
-  if (network.chainId !== CHAIN_ID) {
-    console.log('ChainId selected', network.chainId)
-      toast(
-        'Por favor, cambia tu red a' + network.chain + 'para poder continuar.',
-      )
-    return <>Por favor, cambia tu red a {CHAIN_NAME} para poder continuar.</>
-
   React.useEffect(() => {
     if (isProcessingTx) {
-      toast.loading('Comprando ticket', { toastId: 'loading-processing-tx-toast' })
+      toast.loading('Comprando ticket', {
+        toastId: 'loading-processing-tx-toast',
+      })
     } else {
       toast.remove('loading-processing-tx-toast')
     }
   }, [isProcessingTx])
+
+  if (network.chainId !== CHAIN_ID) {
+    console.log('ChainId selected', network.chainId)
+    toast(
+      'Por favor, cambia tu red a' + network.chain + 'para poder continuar.',
+    )
+    return <>Por favor, cambia tu red a {CHAIN_NAME} para poder continuar.</>
+  }
 
   return (
     <Container>
