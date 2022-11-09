@@ -5,6 +5,8 @@ import { BrowserTracing } from '@sentry/tracing'
 import { ContractProvider } from '@/context/ContractContext'
 import { WalletProvider } from '@/context/WalletContext'
 import { Main } from './Main'
+import { client } from '@/hooks/useLotteryStateGraphql'
+import { Provider } from 'urql'
 
 const GlobalStyle = createGlobalStyle`
   * {
@@ -35,9 +37,11 @@ function App() {
     <>
       <GlobalStyle />
       <WalletProvider>
-        <ContractProvider>
-          <Main />
-        </ContractProvider>
+        <Provider value={client}>
+          <ContractProvider>
+            <Main />
+          </ContractProvider>
+        </Provider>
       </WalletProvider>
     </>
   )

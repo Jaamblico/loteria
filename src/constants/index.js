@@ -9,7 +9,6 @@ export const LOTTERY_INITIAL_STATE = {
   lastWinner: '',
   address: '',
   isReloading: false,
-  balance: 0,
   isProcessingTx: false,
 }
 

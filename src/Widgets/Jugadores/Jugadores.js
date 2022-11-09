@@ -11,11 +11,13 @@ export const Jugadores = () => {
   return (
     <Container>
       <Styled.JugadoresContenedor>
-        {players?.map((add, idx) => (
-          <Styled.Jugadores key={`${add.toString()}-${idx}`}>
-            {add}
-          </Styled.Jugadores>
-        ))}
+        {players.length > 0
+          ? players.map((add, idx) => (
+              <Styled.Jugadores key={`${add.toString()}-${idx}`}>
+                {add}
+              </Styled.Jugadores>
+            ))
+          : 'Sin jugadores...'}
       </Styled.JugadoresContenedor>
     </Container>
   )

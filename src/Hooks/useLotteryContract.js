@@ -10,38 +10,43 @@ import abi from '@/utils/Lottery.json'
 import toast from 'react-hot-toast'
 import { getBalance, getLotteryData } from '@/services/lottery'
 import { useWalletconnect } from '@/hooks/useWalletConnect'
+import { useLotteryGraphql } from './useLotteryStateGraphql'
 
 export const useContract = () => {
-  const [data, setData] = React.useState(LOTTERY_INITIAL_STATE)
+  const [lotteryData, setLotteryData] = React.useState(LOTTERY_INITIAL_STATE)
 
   const { wallet } = useWalletconnect()
 
   const { library, network, setWallet } = wallet
 
-  const getStaticInfo = async () => {
-    const balance = await getBalance() // Promise.race[]
-    const lotteryData = await getLotteryData() // Promise.race[]
+  const { data = {}, fetching, reexecuteQuery } = useLotteryGraphql() || {}
 
-    setData(state => ({
+  const getStaticInfo = () => {
+    setLotteryData(state => ({
       ...state,
-      ...lotteryData,
-      balance,
+      ...data,
       isLoading: false,
     }))
   }
 
-  const refreshContractData = async () => {
-    await getStaticInfo()
+  const refreshContractData = () => {
+    console.log('REFRESHING')
+    setIsReloading()
+
+    reexecuteQuery({ requestPolicy: 'network-only' })
+
+    console.log('FINISH REFRESHING')
+    setIsReloading()
   }
 
   const setIsReloading = () =>
-    setData(state => ({
+    setLotteryData(state => ({
       ...state,
       isReloading: !state.isReloading,
     }))
 
   const setIsProcessingTx = () =>
-    setData(state => ({
+    setLotteryData(state => ({
       ...state,
       isProcessingTx: !state.isProcessingTx,
     }))
@@ -103,11 +108,14 @@ export const useContract = () => {
   }
 
   React.useEffect(() => {
-    getStaticInfo()
-  }, [])
+    if (!fetching) {
+      getStaticInfo()
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [fetching])
 
   return {
-    data,
+    lotteryData,
     buyTicket,
     refreshContractData,
     setIsReloading,
