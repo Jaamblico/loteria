@@ -23,7 +23,7 @@ export const BuyButton = () => {
     if (isProcessingTx) {
       toast.loading('Comprando ticket', { toastId: 'loading-processing-tx-toast' })
     } else {
-      toast.remove('1')
+      toast.remove('loading-processing-tx-toast')
     }
   }, [isProcessingTx])
 
