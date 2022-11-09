@@ -21,7 +21,7 @@ export const BuyButton = () => {
 
   React.useEffect(() => {
     if (isProcessingTx) {
-      toast.loading('Comprando ticket', { toastId: '1' })
+      toast.loading('Comprando ticket', { toastId: 'loading-processing-tx-toast' })
     } else {
       toast.remove('1')
     }
