@@ -5,6 +5,7 @@ import { Button } from '@/components/Button'
 import { Container } from '@/components/Container'
 import { CHAIN_ID, CHAIN_NAME } from '@/constants'
 import toast from 'react-hot-toast'
+import { getGasPrice } from '@/services/lottery'
 
 export const BuyButton = () => {
   const { buyTicket, isProcessingTx } = useContractData()
@@ -14,10 +15,10 @@ export const BuyButton = () => {
   React.useEffect(() => {
     if (isProcessingTx) {
       toast.loading('Comprando ticket', {
-        toastId: 'loading-processing-tx-toast',
+        toastId: '1',
       })
     } else {
-      toast.remove('loading-processing-tx-toast')
+      toast.remove('1')
     }
   }, [isProcessingTx])
 

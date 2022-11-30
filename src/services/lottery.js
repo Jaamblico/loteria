@@ -29,6 +29,11 @@ export const getBalance = async () => {
   }
 }
 
+export const getGasPrice = async () => {
+  const gasPrice = await defaultProvider.getGasPrice()
+  return formatEther(gasPrice)
+}
+
 export const getLotteryData = async () => {
   try {
     const getPrize = lotteryContract.getPrize()
