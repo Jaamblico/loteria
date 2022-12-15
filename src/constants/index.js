@@ -24,7 +24,7 @@ export const WALLET_INITIAL_STATE = {
   verified: null,
 }
 
-export const CONTRACT_ADDRESS = '0xdc12b61cee7E9BaEDf552e8DB42744b9f63a555A'
+export const CONTRACT_ADDRESS = '0x4658d96C84DA37e9a62fBEe52aeC75432c664067'
 
 export const CHAIN_NAME = 'goerli'
 
