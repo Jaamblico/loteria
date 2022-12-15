@@ -11,13 +11,13 @@ export const BuyButton = () => {
   const { wallet } = useWalletContext()
   const { network } = wallet
 
+  const toastId = React.useRef(null)
+
   React.useEffect(() => {
     if (isProcessingTx) {
-      toast.loading('Comprando ticket', {
-        toastId: 'loading-processing-tx-toast',
-      })
+      toastId.current = toast.loading('Comprando ticket')
     } else {
-      toast.remove('loading-processing-tx-toast')
+      toast.remove(toastId.current)
     }
   }, [isProcessingTx])
 
