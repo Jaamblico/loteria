@@ -30,19 +30,9 @@ export const useContract = () => {
 
   const refreshContractData = () => {
     console.log('REFRESHING')
-    setIsReloading()
-
     reexecuteQuery({ requestPolicy: 'network-only' })
-
-    console.log('FINISH REFRESHING')
-    setIsReloading()
+    console.log('FINISHED REFRESHING')
   }
-
-  const setIsReloading = () =>
-    setLotteryData(state => ({
-      ...state,
-      isReloading: !state.isReloading,
-    }))
 
   const setIsProcessingTx = () =>
     setLotteryData(state => ({
@@ -117,7 +107,6 @@ export const useContract = () => {
     lotteryData,
     buyTicket,
     refreshContractData,
-    setIsReloading,
     setIsProcessingTx,
   }
 }
