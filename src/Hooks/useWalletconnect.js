@@ -40,6 +40,8 @@ export const useWalletconnect = () => {
       const accounts = await library.listAccounts()
       const network = await library.getNetwork()
 
+      console.log('NETWORK:', network)
+
       setWallet(s => ({ ...s, provider, library, network }))
 
       if (accounts) {
@@ -77,8 +79,8 @@ export const useWalletconnect = () => {
 
       // TODO: Since chainId is not part of state check I better update network object instead
       const handleChainChanged = _hexChainId => {
-        console.log('chainChanged', _hexChainId)
-        // setWallet(s => ({ ...s, _hexChainId }))
+        console.log('chainChanged', _hexChainId.toNumber())
+        setWallet(s => ({ ...s, network: _hexChainId.toNumber() }))
       }
 
       const handleDisconnect = () => {

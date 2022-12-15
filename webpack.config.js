@@ -1,5 +1,8 @@
 const webpack = require('webpack')
 const path = require('path')
+// const BundleAnalyzerPlugin =
+//   require('webpack-bundle-analyzer').BundleAnalyzerPlugin
+const CompressionPlugin = require('compression-webpack-plugin')
 const HtmlWebpackPlugin = require('html-webpack-plugin')
 const SentryWebpackPlugin = require('@sentry/webpack-plugin')
 const pkg = require('./package.json')
@@ -26,6 +29,11 @@ const client = argv => {
       publicPath: isDev ? developmentPublicPath : productionPublicPath,
     },
     plugins: [
+      // new BundleAnalyzerPlugin(),
+      new CompressionPlugin({
+        test: /\.js(\?.*)?$/i,
+        exclude: /.map$/,
+      }),
       new webpack.DefinePlugin(definitions),
       new HtmlWebpackPlugin({
         template: path.resolve(__dirname, 'public/index.html'),
