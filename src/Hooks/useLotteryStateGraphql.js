@@ -1,7 +1,7 @@
 import { CONTRACT_ADDRESS } from '@/constants'
 import { createClient, useQuery } from 'urql'
 
-const BASE_URL = 'https://api.studio.thegraph.com/query/37382/lottery/0.0.1'
+const BASE_URL = 'https://api.studio.thegraph.com/query/37382/lottery/0.0.2'
 
 export const client = createClient({
   url: BASE_URL,

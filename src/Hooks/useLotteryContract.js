@@ -8,7 +8,6 @@ import {
 } from '@/constants'
 import abi from '@/utils/Lottery.json'
 import toast from 'react-hot-toast'
-import { getBalance, getLotteryData } from '@/services/lottery'
 import { useWalletconnect } from '@/hooks/useWalletConnect'
 import { useLotteryGraphql } from './useLotteryStateGraphql'
 
