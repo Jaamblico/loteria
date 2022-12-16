@@ -22,11 +22,27 @@ const client = argv => {
 
   const config = {
     name: 'client',
-    entry: './src/index.js',
+    entry: {
+      index: './src/index.js',
+    },
     output: {
       path: path.resolve(__dirname, './build'),
       filename: '[name].bundle.[contentHash:8].js',
+      chunkFilename: '[name].bundle.[contentHash:8].js',
       publicPath: isDev ? developmentPublicPath : productionPublicPath,
+    },
+    optimization: {
+      moduleIds: 'hashed',
+      runtimeChunk: 'single',
+      splitChunks: {
+        cacheGroups: {
+          vendor: {
+            test: /[\\/]node_modules[\\/]/,
+            name: 'vendors',
+            chunks: 'all',
+          },
+        },
+      },
     },
     plugins: [
       // new BundleAnalyzerPlugin(),
