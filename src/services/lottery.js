@@ -1,10 +1,5 @@
 import { ethers } from 'ethers'
-import { formatEther } from '@/utils'
-import {
-  CONTRACT_ADDRESS,
-  LOTTERY_INITIAL_STATE,
-  CHAIN_NAME,
-} from '@/constants'
+import { CONTRACT_ADDRESS, CHAIN_NAME } from '@/constants'
 import abi from '@/utils/Lottery.json' // abstract binary interface
 
 const defaultProvider = ethers.getDefaultProvider(CHAIN_NAME)
