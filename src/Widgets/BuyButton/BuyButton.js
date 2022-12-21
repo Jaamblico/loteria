@@ -5,6 +5,7 @@ import { Button } from '@/components/Button'
 import { Container } from '@/components/Container'
 import { CHAIN_ID, CHAIN_NAME } from '@/constants'
 import toast from 'react-hot-toast'
+import { getGasPrice } from '@/services/lottery'
 
 export const BuyButton = () => {
   const { buyTicket, isProcessingTx } = useContractData()
