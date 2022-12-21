@@ -21,7 +21,7 @@ const GlobalStyle = createGlobalStyle`
 function App() {
   React.useEffect(() => {
     const client = new BrowserClient({
-      dsn: process.env.SENTRY_DSN,
+      dsn: 'https://304078c336ef48b6815cbc02b619c487@o4504019113672704.ingest.sentry.io/4504019114852352',
       environment: 'develop',
       integrations: [new BrowserTracing()],
       tracesSampleRate: 1,
